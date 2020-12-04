@@ -2,6 +2,13 @@
 
 My dotfiles for Mac and Ubuntu setup.
 
+
+## TODO
+- [ ] Finish documentation
+- [ ] Add VSCode global settings
+- [ ] Install oh-my-zsh on iTerm2
+- [ ] Configure custom oh-my-zsh plugins
+- [ ] Setup vim configuration
 ## Highlights
 
 - Minimal efforts to install everything, using a [Makefile](./Makefile)
@@ -108,7 +115,8 @@ Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`.
 You might have done the `make` command without having this repository on `~/.dotfiles` location.
 To fix it you have to move this repository to `~/.dotfiles` and manually remove the symlinks for those files that have that error using `rm -f symlink_to_dir/`. Then run `make` again.
 
-- `warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory` TODO
+- `warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory`
+You might have spelled the locale wrong. Check how the format of the locale is supposed to be written.
 
 - How to add new VSCode Plugins? TODO
 
