@@ -2,6 +2,7 @@ CoenraadS.bracket-pair-colorizer-2
 dbaeumer.vscode-eslint
 DotJoshJohnson.xml
 eamodio.gitlens
+waderyan.gitblame
 esbenp.prettier-vscode
 Gruntfuggly.todo-tree
 naumovs.color-highlight
@@ -16,3 +17,5 @@ eg2.vscode-npm-script
 christian-kohler.npm-intellisense
 EditorConfig.EditorConfig
 mikestead.dotenv
+GraphQL.vscode-graphql
+jpoissonnier.vscode-styled-components
