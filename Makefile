@@ -3,6 +3,7 @@ DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 OS := $(shell bin/is-supported bin/is-macos macos linux)
 PATH := $(DOTFILES_DIR)/bin:$(PATH)
 NVM_DIR := $(HOME)/.nvm
+VIM_DIR := ~/.vim_runtime
 export XDG_CONFIG_HOME := $(HOME)/.config
 export VSCODE_CONFIG_HOME := $(HOME)/Library/Application\ Support/Code/User
 export STOW_DIR := $(DOTFILES_DIR)
@@ -11,9 +12,9 @@ export STOW_DIR := $(DOTFILES_DIR)
 
 all: $(OS)
 
-macos: sudo core-macos packages link
+macos: sudo core-macos packages link install-vim
 
-linux: core-linux link
+linux: core-linux link install-vim
 
 core-macos: brew bash git npm ruby
 
@@ -36,25 +37,37 @@ endif
 
 packages: brew-packages cask-apps node-packages
 
+# Make sure that a config folder doesn't contain files so the symlinks can be added without conflicts
+define avoid_duplicate_files
+    for FILE in $$(\ls -A $(1)); do if [ -f $(2)/$$FILE -a ! -h $(2)/$$FILE ]; then \
+		  mv -v $(2)/$$FILE{,.bak}; fi; done
+endef
+
+# Make sure that a config folder doesn't contain files so the symlinks can be added without conflicts
+define restore_bak_files
+    for FILE in $$(\ls -A $(1)); do if [ -f $(2)/$$FILE.bak ]; then \
+		  mv -v $(2)/$$FILE.bak $(2)/$${FILE%%.bak}; fi; done
+endef
+
 link: stow-$(OS)
-	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
-		mv -v $(HOME)/$$FILE{,.bak}; fi; done
+	$(call avoid_duplicate_files,runcom,$(HOME))
+	$(call avoid_duplicate_files,VSCode,$(VSCODE_CONFIG_HOME))
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -v -t $(HOME) runcom
 	stow -v -t $(XDG_CONFIG_HOME) config
-  	# Make sure that a VSCode config folder doesn't exist so the symlinks can be added properly
-	for FILE in $$(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME)/$$FILE -a ! -h $(VSCODE_CONFIG_HOME)/$$FILE ]; then \
-		mv -v $(VSCODE_CONFIG_HOME)/$$FILE{,.bak}; fi; done
 	stow -v -t $(VSCODE_CONFIG_HOME) VSCode
 
 unlink: stow-$(OS)
 	stow --delete -t $(HOME) runcom
 	stow --delete -t $(XDG_CONFIG_HOME) config
 	stow --delete -t $(VSCODE_CONFIG_HOME) VSCode
-	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE.bak ]; then \
-		mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done
-	for FILE in $$(\ls -A VSCode); do if [ -f $(HOME)/$$FILE.bak ]; then \
-		mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done
+	$(call restore_bak_files,runcom,$(HOME))
+	$(call restore_bak_files,VSCode,$(VSCODE_CONFIG_HOME))
+
+install-vim:
+	if ! [ -d $(VIM_DIR)/.git ]; then git clone --depth=1 https://github.com/amix/vimrc.git $(VIM_DIR); fi
+	sh ~/.vim_runtime/install_awesome_vimrc.sh
+	echo ":set number" >> ~/.vimrc # Add :set number to the vim settings
 
 brew:
 	is-executable brew || curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash

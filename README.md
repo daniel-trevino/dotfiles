@@ -8,7 +8,7 @@ My dotfiles for Mac and Ubuntu setup.
 - [x] Add VSCode global settings
 - [ ] Install oh-my-zsh on iTerm2
 - [ ] Configure custom oh-my-zsh plugins
-- [ ] Setup vim configuration
+- [x] Setup vim configuration
 - [ ] Add plugins to Brave
 - [ ] Add BTT configuration
 
