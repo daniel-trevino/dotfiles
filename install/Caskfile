@@ -3,6 +3,7 @@ tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 
+cask "vanilla"
 cask "iterm2"
 cask "notion"
 cask "alfred"
