@@ -10,7 +10,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        # os: [macos-latest, ubuntu-latest] # Remove macos since it's expensive to run on GA
+        os: [ubuntu-latest]
 
     steps:
       - name: Clean up installed software
