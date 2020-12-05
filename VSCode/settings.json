@@ -1,0 +1,26 @@
+{
+  "workbench.colorTheme": "Dracula",
+  "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 13,
+  "editor.letterSpacing": 1.2,
+  "editor.fontLigatures": true,
+  "workbench.iconTheme": "vscode-icons",
+  "prettier.semi": false,
+  "editor.formatOnSave": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "eslint.alwaysShowStatus": true,
+  "javascript.validate.enable": false,
+  "editor.semanticHighlighting.enabled": false, // Remove when resolved -> https://github.com/dracula/visual-studio-code/issues/132
+  "[javascript]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+      "editor.formatOnSave": false,
+  },
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+  },
+  "window.zoomLevel": 0,
+  "editor.tabSize": 2
+}

@@ -4,6 +4,7 @@ OS := $(shell bin/is-supported bin/is-macos macos linux)
 PATH := $(DOTFILES_DIR)/bin:$(PATH)
 NVM_DIR := $(HOME)/.nvm
 export XDG_CONFIG_HOME := $(HOME)/.config
+export VSCODE_CONFIG_HOME := $(HOME)/Library/Application\ Support/Code/User
 export STOW_DIR := $(DOTFILES_DIR)
 
 .PHONY: test
@@ -41,11 +42,18 @@ link: stow-$(OS)
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -v -t $(HOME) runcom
 	stow -v -t $(XDG_CONFIG_HOME) config
+  	# Make sure that a VSCode config folder doesn't exist so the symlinks can be added properly
+	for FILE in $$(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME)/$$FILE -a ! -h $(VSCODE_CONFIG_HOME)/$$FILE ]; then \
+		mv -v $(VSCODE_CONFIG_HOME)/$$FILE{,.bak}; fi; done
+	stow -v -t $(VSCODE_CONFIG_HOME) VSCode
 
 unlink: stow-$(OS)
 	stow --delete -t $(HOME) runcom
 	stow --delete -t $(XDG_CONFIG_HOME) config
+	stow --delete -t $(VSCODE_CONFIG_HOME) VSCode
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE.bak ]; then \
+		mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done
+	for FILE in $$(\ls -A VSCode); do if [ -f $(HOME)/$$FILE.bak ]; then \
 		mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done
 
 brew:
