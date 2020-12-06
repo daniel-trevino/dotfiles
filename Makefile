@@ -110,7 +110,7 @@ brew-packages: brew
 
 cask-apps: brew
 	brew bundle --file=$(DOTFILES_DIR)/install/Caskfile --verbose || true
-	for EXT in $$(cat install/Codefile); do code --install-extension $$EXT; done
+	for EXT in $$(cat install/VSCodePlugins); do code --install-extension $$EXT; done
 	xattr -d -r com.apple.quarantine ~/Library/QuickLook
 
 node-packages: npm

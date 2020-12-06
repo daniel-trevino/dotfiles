@@ -2,11 +2,16 @@
 
 alias reload="source ~/.zshrc"
 alias _="sudo"
-alias g="git"
 alias rr="rm -rf"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
+
+# Development
+alias g="git"
+alias fk="fkill"
+alias ss="serve"
+alias k="kubectl"
 
 # Default options
 

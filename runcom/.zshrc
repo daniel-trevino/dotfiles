@@ -70,5 +70,8 @@ source $ZSH/oh-my-zsh.sh
 # Fixes permissions with the /usr folder
 ZSH_DISABLE_COMPFIX=true
 
+## Fixes global npm packages installation
+export PATH=/usr/local/share/npm/bin:$PATH
+
 # Eval to fix thefuck
 eval $(thefuck --alias)
