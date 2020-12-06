@@ -56,7 +56,7 @@ link-linux: stow-$(OS)
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -v -t $(HOME) runcom
 	stow -v -t $(XDG_CONFIG_HOME) config
-	stow -v -t $(VSCODE_CONFIG_HOME_LINUX) VSCode
+	# stow -v -t $(VSCODE_CONFIG_HOME_LINUX) VSCode # TODO - fix support linux
 
 unlink: stow-$(OS)
 	stow --delete -t $(HOME) runcom
