@@ -4,15 +4,15 @@ OS := $(shell bin/is-supported bin/is-macos macos linux)
 PATH := $(DOTFILES_DIR)/bin:$(PATH)
 NVM_DIR := $(HOME)/.nvm
 VIM_DIR := ~/.vim_runtime
+OH_MY_ZSH_DIR := ~/.oh-my-zsh
 export XDG_CONFIG_HOME := $(HOME)/.config
 export VSCODE_CONFIG_HOME := $(HOME)/Library/Application\ Support/Code/User
-export STOW_DIR := $(DOTFILES_DIR)
 
 .PHONY: test
 
 all: $(OS)
 
-macos: sudo core-macos packages link install-vim
+macos: sudo core-macos packages link install-vim select-shell-terminal
 
 linux: core-linux link install-vim
 
@@ -35,23 +35,13 @@ ifndef GITHUB_ACTION
 	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 endif
 
-packages: brew-packages cask-apps node-packages
-
-# Make sure that a config folder doesn't contain files so the symlinks can be added without conflicts
-define avoid_duplicate_files
-    for FILE in $$(\ls -A $(1)); do if [ -f $(2)/$$FILE -a ! -h $(2)/$$FILE ]; then \
-		  mv -v $(2)/$$FILE{,.bak}; fi; done
-endef
-
-# Make sure that a config folder doesn't contain files so the symlinks can be added without conflicts
-define restore_bak_files
-    for FILE in $$(\ls -A $(1)); do if [ -f $(2)/$$FILE.bak ]; then \
-		  mv -v $(2)/$$FILE.bak $(2)/$${FILE%%.bak}; fi; done
-endef
+packages: brew-packages cask-apps node-packages oh-my-zsh
 
 link: stow-$(OS)
-	$(call avoid_duplicate_files,runcom,$(HOME))
-	$(call avoid_duplicate_files,VSCode,$(VSCODE_CONFIG_HOME))
+	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
+		mv -v $(HOME)/$$FILE{,.bak}; fi; done
+	for FILE in $$(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME)/$$FILE -a ! -h $(VSCODE_CONFIG_HOME)/$$FILE ]; then \
+		mv -v $(VSCODE_CONFIG_HOME)/$$FILE{,.bak}; fi; done
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -v -t $(HOME) runcom
 	stow -v -t $(XDG_CONFIG_HOME) config
@@ -61,13 +51,18 @@ unlink: stow-$(OS)
 	stow --delete -t $(HOME) runcom
 	stow --delete -t $(XDG_CONFIG_HOME) config
 	stow --delete -t $(VSCODE_CONFIG_HOME) VSCode
-	$(call restore_bak_files,runcom,$(HOME))
-	$(call restore_bak_files,VSCode,$(VSCODE_CONFIG_HOME))
+	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE.bak ]; then \
+		mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done
+	for FILE in $$(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME)/$$FILE.bak ]; then \
+		mv -v $(VSCODE_CONFIG_HOME)/$$FILE.bak $(VSCODE_CONFIG_HOME)/$${FILE%%.bak}; fi; done
 
 install-vim:
-	if ! [ -d $(VIM_DIR)/.git ]; then git clone --depth=1 https://github.com/amix/vimrc.git $(VIM_DIR); fi
-	sh ~/.vim_runtime/install_awesome_vimrc.sh
-	echo ":set number" >> ~/.vimrc # Add :set number to the vim settings
+	if ! [ -d $(VIM_DIR) ]; then \
+		git clone --depth=1 https://github.com/amix/vimrc.git $(VIM_DIR) && \
+		sh ~/.vim_runtime/install_awesome_vimrc.sh && \
+		echo ":set number" >> ~/.vimrc && \
+    	echo ":set mouse=nicr" >> ~/.vimrc; \
+	fi
 
 brew:
 	is-executable brew || curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
@@ -104,7 +99,6 @@ brew-packages: brew
 
 cask-apps: brew
 	brew bundle --file=$(DOTFILES_DIR)/install/Caskfile --verbose || true
-	defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
 	for EXT in $$(cat install/Codefile); do code --install-extension $$EXT; done
 	xattr -d -r com.apple.quarantine ~/Library/QuickLook
 
@@ -113,3 +107,14 @@ node-packages: npm
 
 test:
 	. $(NVM_DIR)/nvm.sh; bats test
+
+oh-my-zsh:
+	if ! [ -d $(OH_MY_ZSH_DIR) ]; then \
+		curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install-oh-my-zsh.sh && \
+		sh install-oh-my-zsh.sh --unattended && \
+		rm install-oh-my-zsh.sh; \
+	fi
+
+select-shell-terminal:
+  # Change default shell from /bin/bash to zsh
+	chsh -s /bin/zsh

@@ -6,8 +6,8 @@ My dotfiles for Mac and Ubuntu setup.
 
 - [ ] Finish documentation
 - [x] Add VSCode global settings
-- [ ] Install oh-my-zsh on iTerm2
-- [ ] Configure custom oh-my-zsh plugins
+- [x] Install oh-my-zsh on iTerm2
+- [x] Configure custom oh-my-zsh plugins
 - [x] Setup vim configuration
 - [ ] Add plugins to Brave
 - [ ] Add BTT configuration
@@ -16,7 +16,6 @@ My dotfiles for Mac and Ubuntu setup.
 
 - Minimal efforts to install everything, using a [Makefile](./Makefile)
 - Mostly based around Homebrew, Caskroom and Node.js, latest Bash + GNU Utils
-- Great [Window management](./config/hammerspoon/README.md) (using Hammerspoon)
 - Fast and colored prompt
 - Updated macOS defaults
 - Well-organized and easy to customize
@@ -30,7 +29,6 @@ My dotfiles for Mac and Ubuntu setup.
 - [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
 - [Node.js + npm LTS](https://nodejs.org/en/download/) (packages: [npmfile](./install/npmfile))
 - Latest Git, Bash 4, Python 3, GNU coreutils, curl, Ruby
-- [Hammerspoon](https://www.hammerspoon.org) (config: [keybindings & window management](./config/hammerspoon))
 - [Mackup](https://github.com/lra/mackup) (sync application settings)
 - `$EDITOR` (and Git editor) is [GNU nano](https://www.nano-editor.org)
 
