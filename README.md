@@ -74,6 +74,7 @@ Close that terminal that you are using and open a new one. Then you can run the 
   - `mackup restore`
 - Remove Spotlight and add setup Alfred command
 - Import BTT backup by double clicking `/backups/Default.bttpreset`
+- Set Aerial screen saver. Open `System Preferences` -> `Desktop & Screen Saver` -> `Screen Saver`
 
 ## The `dotfiles` command
 
