@@ -6,15 +6,16 @@ NVM_DIR := $(HOME)/.nvm
 VIM_DIR := ~/.vim_runtime
 OH_MY_ZSH_DIR := ~/.oh-my-zsh
 export XDG_CONFIG_HOME := $(HOME)/.config
-export VSCODE_CONFIG_HOME := $(HOME)/Library/Application\ Support/Code/User
+VSCODE_CONFIG_HOME_MACOS := $(HOME)/Library/Application\ Support/Code/User
+VSCODE_CONFIG_HOME_LINUX := $(HOME)/.config/Code/User
 
 .PHONY: test
 
 all: $(OS)
 
-macos: sudo core-macos packages link install-vim select-shell-terminal
+macos: sudo core-macos packages link-macos install-vim select-shell-terminal
 
-linux: core-linux link install-vim
+linux: core-linux link-linux install-vim
 
 core-macos: brew bash git npm ruby
 
@@ -37,15 +38,25 @@ endif
 
 packages: brew-packages cask-apps node-packages oh-my-zsh
 
-link: stow-$(OS)
+link-macos: stow-$(OS)
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
 		mv -v $(HOME)/$$FILE{,.bak}; fi; done
-	for FILE in $$(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME)/$$FILE -a ! -h $(VSCODE_CONFIG_HOME)/$$FILE ]; then \
-		mv -v $(VSCODE_CONFIG_HOME)/$$FILE{,.bak}; fi; done
+	for FILE in $$(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME_MACOS)/$$FILE -a ! -h $(VSCODE_CONFIG_HOME_MACOS)/$$FILE ]; then \
+		mv -v $(VSCODE_CONFIG_HOME_MACOS)/$$FILE{,.bak}; fi; done
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -v -t $(HOME) runcom
 	stow -v -t $(XDG_CONFIG_HOME) config
-	stow -v -t $(VSCODE_CONFIG_HOME) VSCode
+	stow -v -t $(VSCODE_CONFIG_HOME_MACOS) VSCode
+
+link-linux: stow-$(OS)
+	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
+		mv -v $(HOME)/$$FILE{,.bak}; fi; done
+	for FILE in $$(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME_LINUX)/$$FILE -a ! -h $(VSCODE_CONFIG_HOME_LINUX)/$$FILE ]; then \
+		mv -v $(VSCODE_CONFIG_HOME_LINUX)/$$FILE{,.bak}; fi; done
+	mkdir -p $(XDG_CONFIG_HOME)
+	stow -v -t $(HOME) runcom
+	stow -v -t $(XDG_CONFIG_HOME) config
+	stow -v -t $(VSCODE_CONFIG_HOME_LINUX) VSCode
 
 unlink: stow-$(OS)
 	stow --delete -t $(HOME) runcom
