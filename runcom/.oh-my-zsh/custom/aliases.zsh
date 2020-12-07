@@ -9,6 +9,8 @@ alias p="cd ~/Projects"
 
 # Development
 alias g="git"
+alias gcom="git checkout master"
+alias gcomp="git checkout master && git pull origin master"
 alias fk="fkill"
 alias ss="serve"
 alias k="kubectl"
