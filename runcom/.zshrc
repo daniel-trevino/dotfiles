@@ -36,8 +36,8 @@ antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle zsh-users/zsh-completions
-antibody bundle marzocchi/zsh-notify
 antibody bundle buonomo/yarn-completion
+# antigen bundle marzocchi/zsh-notify
 # Keybindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -75,3 +75,6 @@ export PATH=/usr/local/share/npm/bin:$PATH
 
 # Eval to fix thefuck
 eval $(thefuck --alias)
+
+# Eval to add starship https://starship.rs/
+eval "$(starship init zsh)"
