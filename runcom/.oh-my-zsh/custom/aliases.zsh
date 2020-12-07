@@ -8,12 +8,22 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
 
 # Development
+
 alias g="git"
 alias gcom="git checkout master"
 alias gcomp="git checkout master && git pull origin master"
 alias fk="fkill"
 alias ss="serve"
 alias k="kubectl"
+
+# yarn
+
+alias y="yarn"
+alias yd="yarn dev"
+alias ya="yarn add"
+alias yr="yarn remove"
+alias yri="rm -r node_modules && yarn"
+alias yc="yarn clean"
 
 # Default options
 
@@ -51,11 +61,6 @@ alias nup="npm update"
 alias nri="rm -r node_modules && npm install"
 alias ncd="npm-check -su"
 
-# yarn
-
-alias ya="yarn add"
-alias yr="yarn remove"
-alias yri="rm -r node_modules && yarn"
 
 # Network
 
