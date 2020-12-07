@@ -4,7 +4,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 
 cask "aerial"
-cask "vanilla"
+cask "dozer"
 cask "iterm2"
 cask "notion"
 cask "alfred"
