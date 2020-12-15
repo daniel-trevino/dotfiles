@@ -24,6 +24,7 @@ alias ya="yarn add"
 alias yr="yarn remove"
 alias yri="rm -r node_modules && yarn"
 alias yc="yarn clean"
+alias yu="yarn upgrade --latest"
 
 # Default options
 
