@@ -26,6 +26,7 @@ cask "visual-studio-code"
 cask "font-jetbrains-mono"
 cask "spectacle"
 cask "lunar"
+cask "postico"
 # cask "rectangle"
 
 # Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
