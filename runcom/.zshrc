@@ -100,3 +100,9 @@ eval $(thefuck --alias)
 
 # Eval to add starship https://starship.rs/
 eval "$(starship init zsh)"
+
+## Paypal certificates
+# export CURL_CA_BUNDLE="$HOME/.certs/cert.pem"
+
+## NPM Token
+export NPM_TOKEN=$(cat ~/.npmrc | sed 's/^.*=//')

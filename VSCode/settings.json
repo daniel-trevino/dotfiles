@@ -30,7 +30,6 @@
   "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
   },
-  "window.zoomLevel": 0,
   "editor.tabSize": 2,
   "todo-tree.tree.showScanModeButton": false,
   "vsicons.dontShowNewVersionMessage": true
