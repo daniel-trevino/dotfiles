@@ -106,3 +106,7 @@ eval "$(starship init zsh)"
 
 ## NPM Token
 export NPM_TOKEN=$(cat ~/.npmrc | sed 's/^.*=//')
+
+# YVM
+export YVM_DIR="$HOME/.yvm"
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh

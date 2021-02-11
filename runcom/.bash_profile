@@ -38,3 +38,7 @@ unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
 # Export
 
 export DOTFILES_DIR DOTFILES_EXTRA_DIR
+
+# YVM
+export YVM_DIR="$HOME/.yvm"
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
