@@ -6,6 +6,7 @@ alias rr="rm -rf"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
+alias dot="cd ~/.dotfiles && code ."
 
 # Development
 

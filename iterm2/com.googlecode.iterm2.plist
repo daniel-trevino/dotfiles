@@ -27,13 +27,13 @@
 	<key>Hotkey</key>
 	<true/>
 	<key>HotkeyChar</key>
-	<integer>167</integer>
+	<integer>63232</integer>
 	<key>HotkeyCode</key>
-	<integer>10</integer>
+	<integer>126</integer>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>HotkeyModifiers</key>
-	<integer>256</integer>
+	<integer>11010368</integer>
 	<key>IRMemory</key>
 	<integer>4</integer>
 	<key>MaxVertically</key>
@@ -1233,6 +1233,12 @@
 			<string>/Users/trevino001</string>
 		</dict>
 	</array>
+	<key>OpenArrangementAtStartup</key>
+	<false/>
+	<key>OpenBookmark</key>
+	<false/>
+	<key>OpenNoWindowsAtStartup</key>
+	<false/>
 	<key>PerPaneBackgroundImage</key>
 	<true/>
 	<key>PointerActions</key>
@@ -1269,8 +1275,6 @@
 		</dict>
 	</dict>
 	<key>PreserveWindowSizeWhenTabBarVisibilityChanges</key>
-	<false/>
-	<key>PreventEscapeSequenceFromClearingHistory</key>
 	<false/>
 	<key>SeparateStatusBarsPerPane</key>
 	<false/>
