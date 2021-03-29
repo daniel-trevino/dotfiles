@@ -16,6 +16,7 @@ alias gcomp="git checkout master && git pull origin master"
 alias fk="fkill"
 alias ss="serve"
 alias k="kubectl"
+alias d="docker"
 
 # yarn
 
