@@ -1,6 +1,3 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
 # Enable autocompletions
 autoload -Uz compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
@@ -100,13 +97,3 @@ eval $(thefuck --alias)
 
 # Eval to add starship https://starship.rs/
 eval "$(starship init zsh)"
-
-## Paypal certificates
-# export CURL_CA_BUNDLE="$HOME/.certs/cert.pem"
-
-## NPM Token
-export NPM_TOKEN=$(cat ~/.npmrc | sed 's/^.*=//')
-
-# YVM
-export YVM_DIR="$HOME/.yvm"
-[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
