@@ -73,6 +73,7 @@ export PATH=/usr/local/share/npm/bin:$PATH
 # place this after nvm initialization!
 autoload -U add-zsh-hook
 load-nvmrc() {
+  [[ -a .nvmrc ]] || return
   local node_version="$(nvm version)"
   local nvmrc_path="$(nvm_find_nvmrc)"
 
@@ -97,3 +98,13 @@ eval $(thefuck --alias)
 
 # Eval to add starship https://starship.rs/
 eval "$(starship init zsh)"
+
+# Added by serverless binary installer
+export PATH="$HOME/.serverless/bin:$PATH"
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/sls.zsh
