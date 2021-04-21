@@ -41,12 +41,8 @@ export DOTFILES_DIR DOTFILES_EXTRA_DIR
 
 ## ----------------- Custom config -----------------
 
-## Custom Certificates PP
-export NODE_EXTRA_CA_CERTS=/private/etc/ssl/cert.pem
-export CURL_CA_BUNDLE="$HOME/.certs/cert.pem"
-
 ## NPM Token
-export NPM_TOKEN=$(cat ~/.npmrc | sed 's/^.*=//')
+# export NPM_TOKEN=$(cat ~/.npmrc | sed 's/^.*=//')
 
 # YVM
 export YVM_DIR="$HOME/.yvm"
