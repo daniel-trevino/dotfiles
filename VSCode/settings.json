@@ -4,6 +4,7 @@
   "editor.fontSize": 13,
   "editor.letterSpacing": 1.2,
   "editor.fontLigatures": true,
+  "editor.minimap.renderCharacters": false,
   "workbench.iconTheme": "vscode-icons",
   "prettier.semi": false,
   "editor.formatOnSave": true,
