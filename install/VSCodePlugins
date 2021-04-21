@@ -19,3 +19,4 @@ EditorConfig.EditorConfig
 mikestead.dotenv
 GraphQL.vscode-graphql
 jpoissonnier.vscode-styled-components
+prisma.prisma
