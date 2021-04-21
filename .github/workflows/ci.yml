@@ -2,8 +2,9 @@ name: Dotfiles Installation
 
 on:
   push:
-  schedule:
-    - cron: '0 17 * * 4' # Every Thursday 5:00PM
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
   install:
@@ -46,3 +47,33 @@ jobs:
       - name: Run tests
         if: matrix.os == 'macos-latest'
         run: make test
+  release:
+    runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+      GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GH_TOKEN }}
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create a new release
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn
+      - run: git config --global user.name "danielivert"
+      - run: git config --global user.email 'danielivert@users.noreply.github.com'
+      - run: yarn semantic-release
