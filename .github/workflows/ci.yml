@@ -48,6 +48,7 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: make test
   release:
+    needs: [install]
     runs-on: ubuntu-latest
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
