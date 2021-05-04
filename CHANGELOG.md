@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/danielivert/dotfiles/compare/v1.0.0...v1.1.0) (2021-05-04)
+
+
+### Features
+
+* add tokyo night storm theme ([5978bad](https://github.com/danielivert/dotfiles/commit/5978bad6037b0a22a2b8ecd2dbdab79f8937d5f9))
+
 # 1.0.0 (2021-04-21)
 
 
