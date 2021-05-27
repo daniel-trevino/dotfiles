@@ -30,7 +30,7 @@ commit_hash_length = 8
 style = "bold white"
 
 [git_state]
-progress_divider = " of "
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
 
 [git_status]
 conflicted = "⚔️ "
@@ -60,8 +60,6 @@ style = "bold green"
 
 [memory_usage]
 format = "$symbol[${ram}( | ${swap})]($style) "
-show_percentage = true
-show_swap = true
 threshold = 50
 style = "bold dimmed white"
 disabled = false
@@ -72,6 +70,9 @@ disabled = true
 [python]
 format = "[$symbol$version]($style) "
 style = "bold green"
+
+[nodejs]
+format = "via [🪀 $version](bold green) "
 
 [time]
 time_format = "%T"
