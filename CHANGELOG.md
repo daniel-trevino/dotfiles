@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/danielivert/dotfiles/compare/v1.1.0...v1.2.0) (2021-05-27)
+
+
+### Bug Fixes
+
+* starship config ([dd79e6e](https://github.com/danielivert/dotfiles/commit/dd79e6ebf66c719acea69885ffc5a44cbf279f0e))
+
+
+### Features
+
+* add drawio vscode plugin ([9c2b04f](https://github.com/danielivert/dotfiles/commit/9c2b04f638964cfd46b8245cf926a0d4430fa59e))
+* add google-drive ([2e9d747](https://github.com/danielivert/dotfiles/commit/2e9d7471f0506b1d804a530d159f513ceccd8e0f))
+
 # [1.1.0](https://github.com/danielivert/dotfiles/compare/v1.0.0...v1.1.0) (2021-05-04)
 
 
