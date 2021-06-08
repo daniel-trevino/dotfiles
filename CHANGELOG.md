@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/danielivert/dotfiles/compare/v1.2.0...v1.2.1) (2021-06-08)
+
+
+### Bug Fixes
+
+* add discord ([4a0b378](https://github.com/danielivert/dotfiles/commit/4a0b378c3e282bb0a49b271310ffd0ad0eae9ecf))
+
 # [1.2.0](https://github.com/danielivert/dotfiles/compare/v1.1.0...v1.2.0) (2021-05-27)
 
 
