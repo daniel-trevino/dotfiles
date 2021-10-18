@@ -27,6 +27,7 @@ alias yr="yarn remove"
 alias yri="rm -r node_modules && yarn"
 alias yc="yarn clean"
 alias yu="yarn upgrade --latest"
+alias yui="yarn upgrade-interactive --latest" # Upgrades on yarn workspaces
 alias yb="yarn build"
 alias yt="yarn test"
 
