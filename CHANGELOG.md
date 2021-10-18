@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/danielivert/dotfiles/compare/v1.2.1...v1.3.0) (2021-10-18)
+
+
+### Features
+
+* add new software ([d289a50](https://github.com/danielivert/dotfiles/commit/d289a50b418c04cfd2baf17a3e0daec8cc2605ca))
+
 ## [1.2.1](https://github.com/danielivert/dotfiles/compare/v1.2.0...v1.2.1) (2021-06-08)
 
 
