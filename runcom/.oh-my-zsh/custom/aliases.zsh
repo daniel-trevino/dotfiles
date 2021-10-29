@@ -165,3 +165,4 @@ alias ram="top -l 1 -s 0 | grep PhysMem"
 
 alias pbtext="pbpaste | textutil -convert txt -stdin -stdout -encoding 30 | pbcopy"
 alias pbspaces="pbpaste | expand | pbcopy"
+alias cpf="pbcopy < " # Copy from file
