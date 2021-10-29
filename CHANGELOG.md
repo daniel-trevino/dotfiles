@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/danielivert/dotfiles/compare/v1.3.0...v1.4.0) (2021-10-29)
+
+
+### Bug Fixes
+
+* vscode copilot settings ([757db92](https://github.com/danielivert/dotfiles/commit/757db92512057c9a3cf02d0f629557bdec5af182))
+
+
+### Features
+
+* add github copilot to vscode ([8be38b9](https://github.com/danielivert/dotfiles/commit/8be38b9f69e2600490ac50c73e1790664c4c732f))
+* add new alias to copy file contents ([f6109d8](https://github.com/danielivert/dotfiles/commit/f6109d8c29435d98f6eea3df956a4dec48682a3f))
+* update btt settings ([5ba1362](https://github.com/danielivert/dotfiles/commit/5ba1362cab44efc42a454955947ccd8d9f01bd0b))
+
 # [1.3.0](https://github.com/danielivert/dotfiles/compare/v1.2.1...v1.3.0) (2021-10-18)
 
 
