@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/danielivert/dotfiles/compare/v1.4.0...v1.5.0) (2021-11-03)
+
+
+### Features
+
+* add ledger wallet ([398502c](https://github.com/danielivert/dotfiles/commit/398502cd6e2ee032386563a391b9d2a4a9a552a2))
+
 # [1.4.0](https://github.com/danielivert/dotfiles/compare/v1.3.0...v1.4.0) (2021-10-29)
 
 
