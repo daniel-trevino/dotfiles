@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/danielivert/dotfiles/compare/v1.5.0...v1.6.0) (2021-12-11)
+
+
+### Bug Fixes
+
+* improve aliases for multiple ssh keys ([006b9f5](https://github.com/danielivert/dotfiles/commit/006b9f5a2e0665b5b71f3e85cad19038ae5858b7))
+
+
+### Features
+
+* add new vscode plugin ([db91850](https://github.com/danielivert/dotfiles/commit/db918500ce8eaffffa87542bfae57aff6201620a))
+
 # [1.5.0](https://github.com/danielivert/dotfiles/compare/v1.4.0...v1.5.0) (2021-11-03)
 
 
