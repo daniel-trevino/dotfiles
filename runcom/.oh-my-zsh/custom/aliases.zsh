@@ -166,3 +166,30 @@ alias ram="top -l 1 -s 0 | grep PhysMem"
 alias pbtext="pbpaste | textutil -convert txt -stdin -stdout -encoding 30 | pbcopy"
 alias pbspaces="pbpaste | expand | pbcopy"
 alias cpf="pbcopy < " # Copy from file
+
+# Helps to handle multiple ssh keys on github and cloning repos
+gclone() {
+  SSH_COMMAND="ssh-add ~/.ssh/${1}; git clone ${2}"
+  ssh-agent bash -c "${SSH_COMMAND}"
+  echo "$1" "$2"
+}
+
+# Setups first github user in repo
+gsr() {
+  # Requires a file located in ~/github_users/first_user.sh with the following format:
+  # git config user.name "The Github Name"
+  # git config user.email "githubuser@email.com"
+  # git config core.sshCommand "ssh -i ~/.ssh/USER_SSH_KEY -F /dev/null"
+  bash ~/github_users/first_user.sh
+  echo "Github user setup correctly"
+}
+
+# Setups first github user in repo
+gsd() {
+  # Requires a file located in ~/github_users/second_user.sh with the following format:
+  # git config user.name "The Github Name"
+  # git config user.email "githubuser@email.com"
+  # git config core.sshCommand "ssh -i ~/.ssh/USER_SSH_KEY -F /dev/null"
+  bash ~/github_users/second_user.sh
+  echo "Github user setup correctly"
+}
