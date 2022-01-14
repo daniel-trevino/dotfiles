@@ -1,3 +1,12 @@
+# [1.7.0](https://github.com/danielivert/dotfiles/compare/v1.6.0...v1.7.0) (2022-01-14)
+
+
+### Features
+
+* add codesnap ([da808df](https://github.com/danielivert/dotfiles/commit/da808df87fdcc1b0e4408c2f604b7fc03ba961da))
+* add helm ([039a0a3](https://github.com/danielivert/dotfiles/commit/039a0a3ce9b0128be07b3809a4e562ca89d877cd))
+* rm bracketPairs since its not supported anymore ([bf57b8f](https://github.com/danielivert/dotfiles/commit/bf57b8ffa22ca43871343045cc0b79a064805be0))
+
 # [1.6.0](https://github.com/danielivert/dotfiles/compare/v1.5.0...v1.6.0) (2021-12-11)
 
 
