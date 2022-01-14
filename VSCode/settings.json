@@ -31,18 +31,20 @@
   "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
   },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs":"active",
   "editor.tabSize": 2,
   "todo-tree.tree.showScanModeButton": false,
-"vsicons.dontShowNewVersionMessage": true,
-"todo-tree.general.tags": [
-    "BUG",
-    "HACK",
-    "FIXME",
-    "TODO",
-    "XXX",
-    "[ ]",
-    "[x]"
-],
-"todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
-"editor.inlineSuggest.enabled": true
+  "vsicons.dontShowNewVersionMessage": true,
+  "todo-tree.general.tags": [
+      "BUG",
+      "HACK",
+      "FIXME",
+      "TODO",
+      "XXX",
+      "[ ]",
+      "[x]"
+  ],
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+  "editor.inlineSuggest.enabled": true
 }
