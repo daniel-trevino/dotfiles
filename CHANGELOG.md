@@ -1,3 +1,11 @@
+# [1.8.0](https://github.com/danielivert/dotfiles/compare/v1.7.0...v1.8.0) (2022-05-27)
+
+
+### Features
+
+* add warp terminal ([5799de9](https://github.com/danielivert/dotfiles/commit/5799de981dbb923086b25b5acf0102732034c04f))
+* git config ([3e226e0](https://github.com/danielivert/dotfiles/commit/3e226e0a6b38dcb8e4db694efa7fc9a3633384f0))
+
 # [1.7.0](https://github.com/danielivert/dotfiles/compare/v1.6.0...v1.7.0) (2022-01-14)
 
 
