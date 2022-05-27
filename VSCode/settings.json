@@ -46,5 +46,12 @@
       "[x]"
   ],
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
-  "editor.inlineSuggest.enabled": true
+"editor.inlineSuggest.enabled": true,
+"github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": true,
+    "markdown": false
+},
+"solidity.compileUsingRemoteVersion": "v0.8.7+commit.e28d00a7"
 }
