@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/danielivert/dotfiles/compare/v1.8.0...v1.9.0) (2022-08-08)
+
+
+### Features
+
+* add pulumi and other changes ([3dfdd53](https://github.com/danielivert/dotfiles/commit/3dfdd53817d2ff4854eb1cd9df02f1744470b777))
+
 # [1.8.0](https://github.com/danielivert/dotfiles/compare/v1.7.0...v1.8.0) (2022-05-27)
 
 
