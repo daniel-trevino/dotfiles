@@ -1,3 +1,12 @@
+# [1.10.0](https://github.com/daniel-trevino/dotfiles/compare/v1.9.0...v1.10.0) (2022-08-09)
+
+
+### Features
+
+* rename to new github user ([9900512](https://github.com/daniel-trevino/dotfiles/commit/990051285c4d1cd26fe90bda5832e04a67395bfb))
+* rm btt backups ([dac491e](https://github.com/daniel-trevino/dotfiles/commit/dac491e7b0d31e99e10a8df8a9aea7c4fe6175cd))
+* use zinit for terminal plugins ([74ed387](https://github.com/daniel-trevino/dotfiles/commit/74ed387cbd6854540efc47605cac496b89dace94))
+
 # [1.9.0](https://github.com/danielivert/dotfiles/compare/v1.8.0...v1.9.0) (2022-08-08)
 
 
