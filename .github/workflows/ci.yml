@@ -75,6 +75,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
-      - run: git config --global user.name "danielivert"
-      - run: git config --global user.email 'danielivert@users.noreply.github.com'
+      - run: git config --global user.name "daniel-trevino"
+      - run: git config --global user.email 'daniel-trevino@users.noreply.github.com'
       - run: yarn semantic-release

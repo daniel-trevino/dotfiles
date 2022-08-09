@@ -16,7 +16,7 @@ My dotfiles for Mac and Ubuntu setup.
 - Updated macOS defaults
 - Well-organized and easy to customize
 - The installation and runcom setup is
-  [tested weekly on real Ubuntu and macOS machines](https://github.com/danielivert/dotfiles/actions) using
+  [tested weekly on real Ubuntu and macOS machines](https://github.com/daniel-trevino/dotfiles/actions) using
   [a GitHub Action](./.github/workflows/ci.yml)
 
 ## Packages Overview
@@ -42,7 +42,7 @@ The Xcode Command Line Tools includes `git` and `make` (not available on stock m
 1. Install this repo with `curl` available:
 
 ```bash
-bash -c "`curl -fsSL https://raw.githubusercontent.com/danielivert/dotfiles/master/remote-install.sh`"
+bash -c "`curl -fsSL https://raw.githubusercontent.com/daniel-trevino/dotfiles/master/remote-install.sh`"
 ```
 
 This will clone or download, this repo to `~/.dotfiles` depending on the availability of `git`, `curl` or `wget`.
@@ -50,7 +50,7 @@ This will clone or download, this repo to `~/.dotfiles` depending on the availab
 1. Alternatively, clone manually into the desired location:
 
 ```bash
-git clone https://github.com/danielivert/dotfiles.git ~/.dotfiles
+git clone https://github.com/daniel-trevino/dotfiles.git ~/.dotfiles
 ```
 
 Use the [Makefile](./Makefile) to install everything [listed above](#package-overview), and symlink [runcom](./runcom)
@@ -62,11 +62,12 @@ make
 ```
 
 The installation process in the Makefile is tested on every push and every week in this
-[GitHub Action](https://github.com/danielivert/dotfiles/actions).
+[GitHub Action](https://github.com/daniel-trevino/dotfiles/actions).
 
 ## Post-Installation
 
-Close that terminal that you are using and open a new one. Then you can run the following commands
+1. Close that terminal that you are using and open a new one. Then you can run the following commands
+2. Compile zinit via `zinit self-update`
 
 - `dotfiles dock` (set [Dock items](./macos/dock.sh))
 - `dotfiles macos` (set [macOS defaults](./macos/defaults.sh))
@@ -75,7 +76,6 @@ Close that terminal that you are using and open a new one. Then you can run the 
   - `ln -s ~/.config/mackup/.mackup.cfg ~` (until [#632](https://github.com/lra/mackup/pull/632) is fixed)
   - `mackup restore`
 - Remove Spotlight and add setup Alfred command
-- Import BTT backup by double clicking `/backups/Default.bttpreset`
 - Set Aerial screen saver. Open `System Preferences` -> `Desktop & Screen Saver` -> `Screen Saver`
 
 ## The `dotfiles` command
@@ -104,7 +104,6 @@ Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`.
 
 ## Additional Resources
 
-- [Awesome Dotfiles](https://github.com/danielivert/awesome-dotfiles)
 - [Homebrew](https://brew.sh)
 - [Homebrew Cask](https://github.com/Homebrew/homebrew-cask)
 - [Bash prompt](https://wiki.archlinux.org/index.php/Color_Bash_Prompt)

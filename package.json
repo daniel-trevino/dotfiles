@@ -1,9 +1,9 @@
 {
-  "name": "danielivert-dotfiles",
+  "name": "daniel-trevino-dotfiles",
   "version": "1.9.0",
   "private": true,
-  "repository": "git@github.com:danielivert/dotfiles.git",
-  "author": "Daniel Treviño <danielivert@gmail.com>",
+  "repository": "git@github.com:daniel-trevino/dotfiles.git",
+  "author": "Daniel Treviño Bergman <daniel@netrek.se>",
   "license": "MIT",
   "scripts": {
     "setup:husky": "npx husky install",
