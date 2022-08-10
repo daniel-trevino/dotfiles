@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/daniel-trevino/dotfiles/compare/v1.10.0...v1.10.1) (2022-08-10)
+
+
+### Bug Fixes
+
+* loading terminal plugins ([327690d](https://github.com/daniel-trevino/dotfiles/commit/327690d3a2e9456b9dc8c7ecebd9959b80af8f6d))
+
 # [1.10.0](https://github.com/daniel-trevino/dotfiles/compare/v1.9.0...v1.10.0) (2022-08-09)
 
 
