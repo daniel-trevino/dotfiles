@@ -36,6 +36,7 @@ brew "shellcheck"
 brew "ssh-copy-id"
 brew "starship"
 brew "stow"
+brew "terminal-notifier" # Needed for the terminal plugin zsh-notify
 brew "thefuck"
 brew "tree"
 brew "wifi-password"
