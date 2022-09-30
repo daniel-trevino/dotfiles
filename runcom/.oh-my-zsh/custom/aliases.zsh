@@ -13,10 +13,13 @@ alias dot="cd ~/.dotfiles && code ."
 alias g="git"
 alias gcom="git checkout master"
 alias gcomp="git checkout master && git pull origin master"
+alias gcan="git commit --amend --no-edit"
+alias gca="git commit --amend"
 alias fk="fkill"
 alias ss="serve"
 alias k="kubectl"
 alias d="docker"
+alias c="code ."
 
 # yarn
 
