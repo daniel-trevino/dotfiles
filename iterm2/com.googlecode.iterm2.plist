@@ -384,13 +384,13 @@
 	<key>Hotkey</key>
 	<true/>
 	<key>HotkeyChar</key>
-	<integer>63232</integer>
+	<integer>84</integer>
 	<key>HotkeyCode</key>
-	<integer>126</integer>
+	<integer>17</integer>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>HotkeyModifiers</key>
-	<integer>11272481</integer>
+	<integer>1966379</integer>
 	<key>IRMemory</key>
 	<integer>4</integer>
 	<key>MaxVertically</key>
