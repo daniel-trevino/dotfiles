@@ -1,3 +1,12 @@
+# [1.11.0](https://github.com/daniel-trevino/dotfiles/compare/v1.10.1...v1.11.0) (2022-09-30)
+
+
+### Features
+
+* add git commit ammend alias ([a0e5e10](https://github.com/daniel-trevino/dotfiles/commit/a0e5e10720abf3b1c53aab09906b6de9674f6829))
+* add pnpm ([62124a0](https://github.com/daniel-trevino/dotfiles/commit/62124a09a21841868d0e9fa25b7d3b59bd0d3ccc))
+* change iterm hotkey ([9e8aa91](https://github.com/daniel-trevino/dotfiles/commit/9e8aa91747dda9b7b824e6df21aea75cba38dad5))
+
 ## [1.10.1](https://github.com/daniel-trevino/dotfiles/compare/v1.10.0...v1.10.1) (2022-08-10)
 
 
