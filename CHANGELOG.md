@@ -1,3 +1,15 @@
+# [1.12.0](https://github.com/daniel-trevino/dotfiles/compare/v1.11.0...v1.12.0) (2022-11-25)
+
+
+### Bug Fixes
+
+* github email ([060e493](https://github.com/daniel-trevino/dotfiles/commit/060e493477535b3cb6f8a4780edc3852d185a142))
+
+
+### Features
+
+* use native terminal plugins ([a354a78](https://github.com/daniel-trevino/dotfiles/commit/a354a781a648747943c46c4851c9c74f0b5106d5))
+
 # [1.11.0](https://github.com/daniel-trevino/dotfiles/compare/v1.10.1...v1.11.0) (2022-09-30)
 
 
