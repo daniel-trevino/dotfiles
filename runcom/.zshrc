@@ -58,6 +58,12 @@ zinit light zsh-users/zsh-completions
 zinit light buonomo/yarn-completion
 zinit light marzocchi/zsh-notify
 
+plugins=(
+  colored-man-pages
+  git
+  yarn
+)
+
 # Keybindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
