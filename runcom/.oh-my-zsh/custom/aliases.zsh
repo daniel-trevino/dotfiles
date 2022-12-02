@@ -178,21 +178,21 @@ gclone() {
 }
 
 # Setups first github user in repo
-gsr() {
-  # Requires a file located in ~/github_users/first_user.sh with the following format:
-  # git config user.name "The Github Name"
-  # git config user.email "githubuser@email.com"
-  # git config core.sshCommand "ssh -i ~/.ssh/USER_SSH_KEY -F /dev/null"
-  bash ~/github_users/first_user.sh
-  echo "Github user setup correctly"
-}
+# gsr() {
+#   # Requires a file located in ~/github_users/first_user.sh with the following format:
+#   # git config user.name "The Github Name"
+#   # git config user.email "githubuser@email.com"
+#   # git config core.sshCommand "ssh -i ~/.ssh/USER_SSH_KEY -F /dev/null"
+#   bash ~/github_users/first_user.sh
+#   echo "Github user setup correctly"
+# }
 
-# Setups first github user in repo
-gsd() {
-  # Requires a file located in ~/github_users/second_user.sh with the following format:
-  # git config user.name "The Github Name"
-  # git config user.email "githubuser@email.com"
-  # git config core.sshCommand "ssh -i ~/.ssh/USER_SSH_KEY -F /dev/null"
-  bash ~/github_users/second_user.sh
-  echo "Github user setup correctly"
-}
+# # Setups first github user in repo
+# gsd() {
+#   # Requires a file located in ~/github_users/second_user.sh with the following format:
+#   # git config user.name "The Github Name"
+#   # git config user.email "githubuser@email.com"
+#   # git config core.sshCommand "ssh -i ~/.ssh/USER_SSH_KEY -F /dev/null"
+#   bash ~/github_users/second_user.sh
+#   echo "Github user setup correctly"
+# }
