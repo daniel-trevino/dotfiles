@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/daniel-trevino/dotfiles/compare/v1.12.0...v1.12.1) (2022-12-02)
+
+
+### Bug Fixes
+
+* errors loading terminal ([22858a1](https://github.com/daniel-trevino/dotfiles/commit/22858a12ad2e5aeccf8a7a94a2542bbba4a09f6e))
+
 # [1.12.0](https://github.com/daniel-trevino/dotfiles/compare/v1.11.0...v1.12.0) (2022-11-25)
 
 
