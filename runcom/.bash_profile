@@ -47,6 +47,7 @@ export DOTFILES_DIR DOTFILES_EXTRA_DIR
 export YVM_DIR="$HOME/.yvm"
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
+# Rust & Cargo
 . "$HOME/.cargo/env"
 
 # Fig post block. Keep at the bottom of this file.
