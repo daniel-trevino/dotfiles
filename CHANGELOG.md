@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/daniel-trevino/dotfiles/compare/v1.12.1...v1.13.0) (2022-12-07)
+
+
+### Features
+
+* add cargo and rust ([0a2e5c1](https://github.com/daniel-trevino/dotfiles/commit/0a2e5c1187e0cf97ca9936570665bf86ec5124f2))
+
 ## [1.12.1](https://github.com/daniel-trevino/dotfiles/compare/v1.12.0...v1.12.1) (2022-12-02)
 
 
