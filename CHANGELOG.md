@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/daniel-trevino/dotfiles/compare/v1.13.0...v1.14.0) (2022-12-07)
+
+
+### Features
+
+* add fig ([3d4424c](https://github.com/daniel-trevino/dotfiles/commit/3d4424cf9245ab35e24b095f6b67deb483e4dda2))
+
 # [1.13.0](https://github.com/daniel-trevino/dotfiles/compare/v1.12.1...v1.13.0) (2022-12-07)
 
 
