@@ -59,5 +59,9 @@
   "[solidity]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "npm.keybindingsChangedWarningShown": true
+  "npm.keybindingsChangedWarningShown": true,
+  "redhat.telemetry.enabled": false,
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  }
 }
