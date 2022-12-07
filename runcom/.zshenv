@@ -46,3 +46,4 @@ export DOTFILES_DIR DOTFILES_EXTRA_DIR
 
 # YVM
 export YVM_DIR="$HOME/.yvm"
+. "$HOME/.cargo/env"

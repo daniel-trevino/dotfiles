@@ -4,6 +4,7 @@ OS := $(shell bin/is-supported bin/is-macos macos linux)
 PATH := $(DOTFILES_DIR)/bin:$(PATH)
 NVM_DIR := $(HOME)/.nvm
 VIM_DIR := ~/.vim_runtime
+CARGO_DIR := $(HOME)/.cargo
 OH_MY_ZSH_DIR := ~/.oh-my-zsh
 ZINIT_DIR := ~/.local/share/zinit/zinit.git
 YVM_DIR := $(HOME)/.yvm
@@ -38,7 +39,7 @@ ifndef GITHUB_ACTION
 	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 endif
 
-packages: brew-packages cask-apps node-packages oh-my-zsh zinit yvm
+packages: brew-packages cask-apps node-packages oh-my-zsh zinit yvm cargo-rust
 
 link-macos: stow-$(OS)
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
@@ -129,6 +130,14 @@ oh-my-zsh:
 		curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install-oh-my-zsh.sh && \
 		sh install-oh-my-zsh.sh --unattended && \
 		rm install-oh-my-zsh.sh; \
+	fi
+
+# Cargo (Rust) package manager
+cargo-rust:
+	if ! [ -d $(CARGO_DIR) ]; then \
+		curl -fsSL https://sh.rustup.rs -o sh.rustup.rs && \
+		sh sh.rustup.rs --unattended && \
+		rm sh.rustup.rs; \
 	fi
 
 # Terminal plugin package manager

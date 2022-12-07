@@ -130,6 +130,9 @@ eval "$(starship init zsh)"
 # Added by serverless binary installer
 export PATH="$HOME/.serverless/bin:$PATH"
 
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [[ -f /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/serverless.zsh
