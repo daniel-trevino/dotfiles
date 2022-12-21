@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/daniel-trevino/dotfiles/compare/v1.14.0...v1.15.0) (2022-12-21)
+
+
+### Features
+
+* add excalidraw vscode extension ([0674330](https://github.com/daniel-trevino/dotfiles/commit/06743300d80647dcb8cc0fa9451d60fb4b13458e))
+
 # [1.14.0](https://github.com/daniel-trevino/dotfiles/compare/v1.13.0...v1.14.0) (2022-12-07)
 
 
