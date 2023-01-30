@@ -34,6 +34,42 @@ alias yui="yarn upgrade-interactive --latest" # Upgrades on yarn workspaces
 alias yb="yarn build"
 alias yt="yarn test"
 
+# pnpm
+
+alias pna="pnpm add" # Add a package to the project
+alias pnad="pnpm add --save-dev" # Add a package to the project as a development dependency
+alias pnap="pnpm add --save-peer" # Add a package to the project as a peer dependency
+alias pnau="pnpm audit" # Audit the project for vulnerabilities
+alias pnb="pnpm run build" # Build the project
+alias pnc="pnpm create" # Create a new project
+alias pnd="pnpm run dev" # Run the project in development mode
+alias pndoc="pnpm run doc" # Generate documentation for the project
+alias pnga="pnpm add --global" # Add a package to the global store
+alias pngls="pnpm list --global" # List packages in the global store
+alias pngrm="pnpm remove --global" # Remove a package from the global store
+alias pngu="pnpm update --global" # Update a package in the global store
+alias pnh="pnpm help" # Show help for a command
+alias pni="pnpm init" # Initialize a new project
+alias pnin="pnpm instal" # Install the project's dependencies
+alias pnln="pnpm run lint" # Lint the project
+alias pnls="pnpm list" # List packages in the project
+alias pnout="pnpm outdated"	# Check for outdated packages
+alias pnp="pnpm" # Run a PNpm command
+alias pnpub="pnpm publish" # Publish the project
+alias pnrm="pnpm remove" # Remove a package from the project
+alias pnrun="pnpm run" # Run a script in the project
+alias pns="pnpm run serve" # Run the project in production mode
+alias pnst="pnpm start" # Start the project
+alias pnsv="pnpm server" # Start the project's development server
+alias pnt="pnpm test" # Run the project's tests
+alias pntc="pnpm test --coverage" # Run the project's tests with coverage
+alias pnui="pnpm update --interactive" # Update packages interactively
+alias pnuil="pnpm update --interactive --latest" # Update packages interactively to the latest version
+alias pnun="pnpm uninstall" # Remove a package from the project
+alias pnup="pnpm update" # Update packages in the project
+alias pnwhy="pnpm why" # Show why a package is installed
+alias pnx="pnpx" # Run a PNpx command
+
 # Default options
 
 alias rsync="rsync -vh"
@@ -176,23 +212,3 @@ gclone() {
   ssh-agent bash -c "${SSH_COMMAND}"
   echo "$1" "$2"
 }
-
-# Setups first github user in repo
-# gsr() {
-#   # Requires a file located in ~/github_users/first_user.sh with the following format:
-#   # git config user.name "The Github Name"
-#   # git config user.email "githubuser@email.com"
-#   # git config core.sshCommand "ssh -i ~/.ssh/USER_SSH_KEY -F /dev/null"
-#   bash ~/github_users/first_user.sh
-#   echo "Github user setup correctly"
-# }
-
-# # Setups first github user in repo
-# gsd() {
-#   # Requires a file located in ~/github_users/second_user.sh with the following format:
-#   # git config user.name "The Github Name"
-#   # git config user.email "githubuser@email.com"
-#   # git config core.sshCommand "ssh -i ~/.ssh/USER_SSH_KEY -F /dev/null"
-#   bash ~/github_users/second_user.sh
-#   echo "Github user setup correctly"
-# }
