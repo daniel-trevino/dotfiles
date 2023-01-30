@@ -63,5 +63,6 @@
   "redhat.telemetry.enabled": false,
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
-  }
+  },
+  "editor.accessibilitySupport": "off"
 }
