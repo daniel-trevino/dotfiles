@@ -6,22 +6,27 @@
   "author": "Daniel Treviño Bergman <daniel@netrek.se>",
   "license": "MIT",
   "scripts": {
-    "setup:husky": "npx husky install",
-    "semantic-release": "npx semantic-release"
+    "setup:husky": "pnpx husky install",
+    "semantic-release": "pnpx semantic-release"
   },
   "devDependencies": {
-    "@commitlint/cli": "12.1.1",
-    "@commitlint/config-conventional": "12.1.1",
-    "@semantic-release/changelog": "5.0.1",
-    "@semantic-release/commit-analyzer": "8.0.1",
-    "@semantic-release/git": "9.0.0",
-    "@semantic-release/github": "7.2.1",
-    "@semantic-release/release-notes-generator": "9.0.2",
-    "husky": "6.0.0"
+    "@commitlint/cli": "17.4.2",
+    "@commitlint/config-conventional": "17.4.2",
+    "semantic-release": "20.1.0",
+    "@semantic-release/changelog": "6.0.2",
+    "@semantic-release/commit-analyzer": "9.0.2",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "8.0.7",
+    "@semantic-release/release-notes-generator": "10.0.3",
+    "husky": "8.0.3"
   },
   "commitlint": {
     "extends": [
       "./node_modules/@commitlint/config-conventional"
     ]
-  }
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "packageManager": "pnpm@7.25.0"
 }
