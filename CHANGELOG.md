@@ -1,3 +1,19 @@
+# [1.16.0](https://github.com/daniel-trevino/dotfiles/compare/v1.15.0...v1.16.0) (2023-01-30)
+
+
+### Bug Fixes
+
+* pnpm install alias ([eb87983](https://github.com/daniel-trevino/dotfiles/commit/eb87983a2f05854b5394f5fa52399aa15baa9de0))
+
+
+### Features
+
+* add pnpm aliases ([4719070](https://github.com/daniel-trevino/dotfiles/commit/4719070d29dba1a2634daa81bf271f1d1a3e4197))
+* add postgresql ([834f7e7](https://github.com/daniel-trevino/dotfiles/commit/834f7e74c7d7562f537e6b7400ea20209ee43c53))
+* rm unused apps ([ca602ab](https://github.com/daniel-trevino/dotfiles/commit/ca602abfe9e8a6445dda1dbd6a2c289d9c57c58e))
+* upgrade to node 18.x ([efaf0d2](https://github.com/daniel-trevino/dotfiles/commit/efaf0d28e71a410d09ea3ca4709560a5f3a69d51))
+* use pnpm as package manager ([416a977](https://github.com/daniel-trevino/dotfiles/commit/416a97709af1d2ee5bbdfdcb2885b6cd73b4c886))
+
 # [1.15.0](https://github.com/daniel-trevino/dotfiles/compare/v1.14.0...v1.15.0) (2022-12-21)
 
 
