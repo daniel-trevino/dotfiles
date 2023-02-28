@@ -11,8 +11,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # os: [macos-latest, ubuntu-latest] # Remove macos since it's expensive to run on GA
-        os: [ubuntu-latest]
+        # os: [macos-latest, ubuntu-20.04] # Remove macos since it's expensive to run on GA
+        os: [ubuntu-20.04	] # Not doing ubuntu latest due to this error https://askubuntu.com/questions/1431786/grub-efi-amd64-signed-dependency-issue-in-ubuntu-22-04lts
 
     steps:
       - name: Clean up installed software
@@ -29,11 +29,6 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: |
           sudo softwareupdate -i -a
-
-      - name: Temp fix latest ubuntu version dependencies # https://askubuntu.com/questions/1431786/grub-efi-amd64-signed-dependency-issue-in-ubuntu-22-04lts
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          sudo apt --only-upgrade install grub-efi-amd64-signed -y
 
       - name: Clone this repository
         uses: actions/checkout@v3
