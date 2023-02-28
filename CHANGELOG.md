@@ -1,3 +1,18 @@
+# [1.17.0](https://github.com/daniel-trevino/dotfiles/compare/v1.16.0...v1.17.0) (2023-02-28)
+
+
+### Bug Fixes
+
+* nvmrc file ([5236fc0](https://github.com/daniel-trevino/dotfiles/commit/5236fc00a71224f1778112b293256b0adbc2cc0c))
+* pipeline ([b2974fd](https://github.com/daniel-trevino/dotfiles/commit/b2974fd9bd5312052bf7ad199896a9df572e03a3))
+* right version of pnpm action ([3d36101](https://github.com/daniel-trevino/dotfiles/commit/3d3610152bed7e3f0cc8e350f22506a79718dfe1))
+
+
+### Features
+
+* add support for custom local scripts ([7d62b87](https://github.com/daniel-trevino/dotfiles/commit/7d62b872bed25c394ebb3a77345d3bc4729505c9))
+* rm vscode key bindings ([f6c2dd4](https://github.com/daniel-trevino/dotfiles/commit/f6c2dd40707dc3fd50ac91dd0c3d48122102f5bf))
+
 # [1.16.0](https://github.com/daniel-trevino/dotfiles/compare/v1.15.0...v1.16.0) (2023-01-30)
 
 
