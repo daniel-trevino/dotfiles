@@ -30,6 +30,11 @@ jobs:
         run: |
           sudo softwareupdate -i -a
 
+      - name: Temp fix latest ubuntu version dependencies # https://askubuntu.com/questions/1431786/grub-efi-amd64-signed-dependency-issue-in-ubuntu-22-04lts
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt --only-upgrade install grub-efi-amd64-signed -y
+
       - name: Clone this repository
         uses: actions/checkout@v3
 
