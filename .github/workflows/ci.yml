@@ -31,7 +31,7 @@ jobs:
           sudo softwareupdate -i -a
 
       - name: Clone this repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install using Makefile
         run: |
@@ -59,16 +59,16 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           # This makes action fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
       - name: Use Node.js 18.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           version: 18.x
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
         name: Install pnpm
         id: pnpm-install
         with:
