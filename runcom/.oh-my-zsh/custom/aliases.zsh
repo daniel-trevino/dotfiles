@@ -212,3 +212,12 @@ gclone() {
   ssh-agent bash -c "${SSH_COMMAND}"
   echo "$1" "$2"
 }
+
+
+# Possibility to load local scripts for the machine who needs it and that should not be commited to the repo
+DIR="$HOME/.dotfiles/runcom/local-scripts"
+if [ "$(ls -A $DIR)" ]; then
+  for i in $HOME/.dotfiles/runcom/local-scripts/*;
+    do source $i
+  done
+fi

@@ -2,3 +2,4 @@ system/.custom
 install/Brewfile.lock.json
 install/Caskfile.lock.json
 *.pyc
+local-scripts/*
