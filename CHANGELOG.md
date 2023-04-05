@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/daniel-trevino/dotfiles/compare/v1.17.0...v1.18.0) (2023-04-05)
+
+
+### Features
+
+* add git branch list alias ([36c9bf0](https://github.com/daniel-trevino/dotfiles/commit/36c9bf0c3dec8dff23ce6ddb5b2d9520ed65983b))
+
 # [1.17.0](https://github.com/daniel-trevino/dotfiles/compare/v1.16.0...v1.17.0) (2023-02-28)
 
 
