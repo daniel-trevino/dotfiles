@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/daniel-trevino/dotfiles/compare/v1.18.0...v1.19.0) (2023-04-21)
+
+
+### Features
+
+* create al helper function ([c0c8b80](https://github.com/daniel-trevino/dotfiles/commit/c0c8b80673f6030901f2dab9fe54f0dffadd1df1))
+
 # [1.18.0](https://github.com/daniel-trevino/dotfiles/compare/v1.17.0...v1.18.0) (2023-04-05)
 
 
