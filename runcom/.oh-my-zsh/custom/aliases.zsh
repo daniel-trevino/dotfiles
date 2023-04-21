@@ -214,6 +214,13 @@ gclone() {
   echo "$1" "$2"
 }
 
+# Shows the aliases that start with the given string
+# Usage: al <string>
+function al {
+  alias | sed 's/alias //g' | sed 's/=.*//' | grep "^$1"
+}
+
+
 
 # Possibility to load local scripts for the machine who needs it and that should not be commited to the repo
 DIR="$HOME/.dotfiles/runcom/local-scripts"
