@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/daniel-trevino/dotfiles/compare/v1.19.0...v1.20.0) (2023-04-25)
+
+
+### Features
+
+* update vscode settings ([4ffc0ad](https://github.com/daniel-trevino/dotfiles/commit/4ffc0ada95d35db0a0943ee96ceff6f7ad5e2d09))
+
 # [1.19.0](https://github.com/daniel-trevino/dotfiles/compare/v1.18.0...v1.19.0) (2023-04-21)
 
 
