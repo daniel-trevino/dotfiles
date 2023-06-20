@@ -1,3 +1,10 @@
+# [1.21.0](https://github.com/daniel-trevino/dotfiles/compare/v1.20.0...v1.21.0) (2023-06-20)
+
+
+### Features
+
+* use exa for files listing ([088563d](https://github.com/daniel-trevino/dotfiles/commit/088563d682da3a606693ee700baf969cf4cddfc7))
+
 # [1.20.0](https://github.com/daniel-trevino/dotfiles/compare/v1.19.0...v1.20.0) (2023-04-25)
 
 
