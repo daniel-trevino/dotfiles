@@ -84,14 +84,8 @@ alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
 alias paths='echo -e ${PATH//:/\\n}'
 
 # Directory listing/traversal
-
-alias l="ls -lahA $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
-alias ll="ls -lA $LS_COLORS"
-alias lt="ls -lhAtr $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
-alias ld="ls -ld $LS_COLORS */"
-alias lp="stat -c '%a %n' *"
-
-unset LS_COLORS LS_TIMESTYLEISO LS_GROUPDIRSFIRST
+alias l="exa -abghHliS"
+alias ll="exa --long --tree"
 
 alias ..="cd .."
 alias ...="cd ../.."
