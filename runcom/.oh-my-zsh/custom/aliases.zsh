@@ -19,8 +19,16 @@ alias gbl="git branch --list --sort=-committerdate"
 alias fk="fkill"
 alias ss="serve"
 alias k="kubectl"
-alias d="docker"
 alias c="code ."
+
+# docker
+
+alias d="docker"
+alias dp="docker image prune -a" ## Prune all images
+alias ddc='docker rm $(docker ps -aq)' ## Deletes all containers
+alias ddi='docker rmi $(docker images -q)' ## Deletes all images
+alias ddia='docker rmi $(docker images -q --filter "dangling=true") -f ' ## Deletes all untagged images
+alias dclean="dp && ddc && ddi && ddia" ## Cleans up docker
 
 # yarn
 
