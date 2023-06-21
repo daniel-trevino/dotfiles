@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/daniel-trevino/dotfiles/compare/v1.21.0...v1.22.0) (2023-06-21)
+
+
+### Features
+
+* add docker shortcuts aliases ([8496716](https://github.com/daniel-trevino/dotfiles/commit/8496716f4630f2a61dd9ed9b6611e56a9dc124dd))
+
 # [1.21.0](https://github.com/daniel-trevino/dotfiles/compare/v1.20.0...v1.21.0) (2023-06-20)
 
 
