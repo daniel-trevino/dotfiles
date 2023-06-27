@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/daniel-trevino/dotfiles/compare/v1.22.0...v1.23.0) (2023-06-27)
+
+
+### Features
+
+* add dexec bin ([9f81f27](https://github.com/daniel-trevino/dotfiles/commit/9f81f2704b3b0c82aeb90ed868272295065cfe43))
+
 # [1.22.0](https://github.com/daniel-trevino/dotfiles/compare/v1.21.0...v1.22.0) (2023-06-21)
 
 
