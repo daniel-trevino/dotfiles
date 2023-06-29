@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/daniel-trevino/dotfiles/compare/v1.23.0...v1.24.0) (2023-06-29)
+
+
+### Features
+
+* add playwright vscode extension ([9ca056e](https://github.com/daniel-trevino/dotfiles/commit/9ca056e5c841b53942ef3160ef0cd0ab58ee4c19))
+
 # [1.23.0](https://github.com/daniel-trevino/dotfiles/compare/v1.22.0...v1.23.0) (2023-06-27)
 
 
