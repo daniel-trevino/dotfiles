@@ -1,3 +1,15 @@
+# [1.25.0](https://github.com/daniel-trevino/dotfiles/compare/v1.24.0...v1.25.0) (2023-07-03)
+
+
+### Bug Fixes
+
+* global git config ([d4416d6](https://github.com/daniel-trevino/dotfiles/commit/d4416d6f7ebaa9bb7803305cc72db151db3f7807))
+
+
+### Features
+
+* add vscode ts-errors plugin ([ebc2a6c](https://github.com/daniel-trevino/dotfiles/commit/ebc2a6c2d70eb376ee59b5288b4eb05d7ceb78e9))
+
 # [1.24.0](https://github.com/daniel-trevino/dotfiles/compare/v1.23.0...v1.24.0) (2023-06-29)
 
 
