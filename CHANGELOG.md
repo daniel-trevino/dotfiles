@@ -1,3 +1,10 @@
+# [1.26.0](https://github.com/daniel-trevino/dotfiles/compare/v1.25.0...v1.26.0) (2023-09-20)
+
+
+### Features
+
+* use vscode insiders ([73aae7d](https://github.com/daniel-trevino/dotfiles/commit/73aae7deb5cc591a789caa1d573451547deeeb9c))
+
 # [1.25.0](https://github.com/daniel-trevino/dotfiles/compare/v1.24.0...v1.25.0) (2023-07-03)
 
 
