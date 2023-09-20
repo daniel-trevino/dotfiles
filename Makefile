@@ -10,6 +10,7 @@ ZINIT_DIR := ~/.local/share/zinit/zinit.git
 YVM_DIR := $(HOME)/.yvm
 export XDG_CONFIG_HOME := $(HOME)/.config
 VSCODE_CONFIG_HOME_MACOS := $(HOME)/Library/Application\ Support/Code/User
+VSCODE_INSIDERS_CONFIG_HOME_MACOS := $(HOME)/Library/Application\ Support/Code\ -\ Insiders/User
 VSCODE_CONFIG_HOME_LINUX := $(HOME)/.config/Code/User
 
 .PHONY: test
@@ -42,14 +43,18 @@ endif
 packages: brew-packages cask-apps node-packages oh-my-zsh zinit yvm cargo-rust
 
 link-macos: stow-$(OS)
-	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
+	for FILE in $(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
 		mv -v $(HOME)/$$FILE{,.bak}; fi; done
-	for FILE in $$(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME_MACOS)/$$FILE -a ! -h $(VSCODE_CONFIG_HOME_MACOS)/$$FILE ]; then \
+	for FILE in $(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME_MACOS)/$$FILE -a ! -h $(VSCODE_CONFIG_HOME_MACOS)/$$FILE ]; then \
 		mv -v $(VSCODE_CONFIG_HOME_MACOS)/$$FILE{,.bak}; fi; done
+	for FILE in $(\ls -A VSCode); do if [ -f $(VSCODE_INSIDERS_CONFIG_HOME_MACOS)/$$FILE -a ! -h $(VSCODE_INSIDERS_CONFIG_HOME_MACOS)/$$FILE ]; then \
+		mv -v $(VSCODE_INSIDERS_CONFIG_HOME_MACOS)/$$FILE{,.bak}; fi; done
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -v -t $(HOME) runcom
 	stow -v -t $(XDG_CONFIG_HOME) config
 	stow -v -t $(VSCODE_CONFIG_HOME_MACOS) VSCode
+	stow -v -t $(VSCODE_INSIDERS_CONFIG_HOME_MACOS) VSCode
+
 
 link-linux: stow-$(OS)
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
@@ -117,6 +122,7 @@ brew-packages: brew
 cask-apps: brew
 	brew bundle --file=$(DOTFILES_DIR)/install/Caskfile --verbose || true
 	for EXT in $$(cat install/VSCodePlugins); do code --install-extension $$EXT; done
+	for EXT in $$(cat install/VSCodePlugins); do code-insiders --install-extension $$EXT; done
 	xattr -d -r com.apple.quarantine ~/Library/QuickLook
 
 node-packages: npm

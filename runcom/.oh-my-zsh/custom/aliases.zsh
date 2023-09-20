@@ -6,7 +6,7 @@ alias rr="rm -rf"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
-alias dot="cd ~/.dotfiles && code ."
+alias dot="cd ~/.dotfiles && code-insiders ."
 
 # Development
 
@@ -19,7 +19,7 @@ alias gbl="git branch --list --sort=-committerdate"
 alias fk="fkill"
 alias ss="serve"
 alias k="kubectl"
-alias c="code ."
+alias c="code-insiders ."
 
 # docker
 
