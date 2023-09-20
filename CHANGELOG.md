@@ -1,3 +1,10 @@
+# [1.27.0](https://github.com/daniel-trevino/dotfiles/compare/v1.26.0...v1.27.0) (2023-09-20)
+
+
+### Features
+
+* rm deprecated vscode plugin ([9f9ad50](https://github.com/daniel-trevino/dotfiles/commit/9f9ad50b8e19a27199e935832c076184161975fc))
+
 # [1.26.0](https://github.com/daniel-trevino/dotfiles/compare/v1.25.0...v1.26.0) (2023-09-20)
 
 
