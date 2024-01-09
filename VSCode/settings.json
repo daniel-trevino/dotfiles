@@ -1,11 +1,11 @@
 {
-  "workbench.colorTheme": "Tokyo Night Storm",
+  "workbench.colorTheme": "Winter is Coming (Dark Blue)",
   "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 13,
   "editor.letterSpacing": 1.2,
   "editor.fontLigatures": true,
   "editor.minimap.renderCharacters": false,
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.iconTheme": "eq-material-theme-icons-light",
   "prettier.semi": false,
   "editor.formatOnSave": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
@@ -28,7 +28,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
@@ -47,11 +47,11 @@
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
-    "*": true,
-    "yaml": false,
+    "*": false,
     "plaintext": true,
     "markdown": true,
     "scminput": false,
+    "yaml": false,
     "typescript": true
   },
   "solidity.compileUsingRemoteVersion": "v0.8.7+commit.e28d00a7",
