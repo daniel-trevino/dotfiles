@@ -19,10 +19,11 @@ alias gbl="git branch --list --sort=-committerdate"
 alias fk="fkill"
 alias ss="serve"
 alias k="kubectl"
-alias c="code-insiders ."
+alias c="code ."
 
 # docker
 
+alias lzd='lazydocker'
 alias d="docker"
 alias dp="docker image prune -a" ## Prune all images
 alias ddc='docker rm $(docker ps -aq)' ## Deletes all containers
