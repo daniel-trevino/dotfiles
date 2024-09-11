@@ -1,8 +1,8 @@
-tap "homebrew/cask"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 
+cask "arc"
 cask "1password"
 cask "aerial"
 cask "alfred"
