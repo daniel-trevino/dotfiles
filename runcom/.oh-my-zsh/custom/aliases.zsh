@@ -80,6 +80,13 @@ alias pnup="pnpm update" # Update packages in the project
 alias pnwhy="pnpm why" # Show why a package is installed
 alias pnx="pnpx" # Run a PNpx command
 
+# bun
+alias ba="bun add"
+alias bad="bun add --development"
+alias bd="bun dev"
+alias bb="bun run build"
+alias bui="bunx npm-check-updates --root --format group -i" # Update dependencies interactive
+
 # Default options
 
 alias rsync="rsync -vh"
