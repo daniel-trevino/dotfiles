@@ -8,7 +8,7 @@
   "scripts": {
     "setup:husky": "pnpx husky install",
     "semantic-release": "pnpx semantic-release",
-    "prepare": "husky"
+    "prepare": "pnpx husky"
   },
   "devDependencies": {
     "@commitlint/cli": "19.5.0",
