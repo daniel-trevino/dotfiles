@@ -100,8 +100,8 @@ alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
 alias paths='echo -e ${PATH//:/\\n}'
 
 # Directory listing/traversal
-alias l="exa -abghHliS"
-alias ll="exa --long --tree"
+alias l="lsd -lAhF --group-dirs first"
+alias ll="lsd -l --tree"
 
 alias ..="cd .."
 alias ...="cd ../.."
