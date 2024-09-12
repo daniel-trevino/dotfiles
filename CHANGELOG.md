@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/daniel-trevino/dotfiles/compare/v1.28.0...v2.0.0) (2024-09-12)
+
+
+### Features
+
+* add arc as main browser ([e4c1a4d](https://github.com/daniel-trevino/dotfiles/commit/e4c1a4d2c41dfd66d99b78aae01cd97bf9c391ef))
+
+
+### BREAKING CHANGES
+
+* After bumping dependencies, we should start from v2.
+
 # [1.28.0](https://github.com/daniel-trevino/dotfiles/compare/v1.27.0...v1.28.0) (2024-09-12)
 
 
