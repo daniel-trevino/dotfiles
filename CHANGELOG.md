@@ -1,3 +1,32 @@
+# [1.28.0](https://github.com/daniel-trevino/dotfiles/compare/v1.27.0...v1.28.0) (2024-09-12)
+
+
+### Bug Fixes
+
+* add cursor and lazydocker ([91d8bca](https://github.com/daniel-trevino/dotfiles/commit/91d8bca871e71bda600a2a5311d5e0906b5ceb26))
+* dot alias to open using cursor ([d5e4a8e](https://github.com/daniel-trevino/dotfiles/commit/d5e4a8e0b30eddb7c54ad13a3fefca5f21c77993))
+* pipeline node version ([9ddf4a0](https://github.com/daniel-trevino/dotfiles/commit/9ddf4a0e1833a72fb1bc705b8ca0a75ea54370df))
+* pnpm path on shell ([d76cf7b](https://github.com/daniel-trevino/dotfiles/commit/d76cf7ba7ad45720d491ae8ce0cec7cb4b3ad292))
+* possible fix to semantic release ([c69df85](https://github.com/daniel-trevino/dotfiles/commit/c69df859ab2a19e251cd29617682997f34b7fa56))
+* rm formula that is depreated ([7583d7f](https://github.com/daniel-trevino/dotfiles/commit/7583d7f10cff26d6f0e59676ce167fc464c83877))
+
+
+### Features
+
+* add arc ([757a284](https://github.com/daniel-trevino/dotfiles/commit/757a2840bf279ba4f14ad8f9dbe73fe9c8f56207))
+* add azure tools extension ([385ac73](https://github.com/daniel-trevino/dotfiles/commit/385ac7384359701e4b139dbff5909df52fe4fe06))
+* add bruno ([c414fba](https://github.com/daniel-trevino/dotfiles/commit/c414fba263010f7038d43bc7a6ed59abd9a64584))
+* add bun aliases ([8a8ecfb](https://github.com/daniel-trevino/dotfiles/commit/8a8ecfb0e88b4e283559f41886f0ad5b434935a3))
+* add insomnia ([37f7474](https://github.com/daniel-trevino/dotfiles/commit/37f7474fed507a2da26b582046fc9018882ded14))
+* add obsidian ([f921081](https://github.com/daniel-trevino/dotfiles/commit/f9210812cdba6b770ef416af3f1ca3c2b0c803d7))
+* add tailwind vscode plugin ([1c33bd2](https://github.com/daniel-trevino/dotfiles/commit/1c33bd279cb69faa8ce9d5d138b5e0c4901f12f3))
+* allow infinite scroll on terminal session ([890c20f](https://github.com/daniel-trevino/dotfiles/commit/890c20f0649af3f991ba4696a5b3ccb505c2e7cd))
+* bump dependencies ([b828ec2](https://github.com/daniel-trevino/dotfiles/commit/b828ec2827a726559b9a9c14b6dd4ee0368a2a39))
+* custom locale on iterm ([afe727d](https://github.com/daniel-trevino/dotfiles/commit/afe727d4ba4711c19a3944f434aceedd79f0fdb4))
+* disable husky hooks on semantic release ([cba694f](https://github.com/daniel-trevino/dotfiles/commit/cba694f79a9999f45d6af5ec4c59ee1fa9ba80fb))
+* update pnpm and node versions ([3cd3282](https://github.com/daniel-trevino/dotfiles/commit/3cd32823049797d543a3c4327329a8b1ce7cbc69))
+* update vscode theme ([d1b1ed2](https://github.com/daniel-trevino/dotfiles/commit/d1b1ed213065bcbff2d672044392d195ffd05891))
+
 # [1.27.0](https://github.com/daniel-trevino/dotfiles/compare/v1.26.0...v1.27.0) (2023-09-20)
 
 
