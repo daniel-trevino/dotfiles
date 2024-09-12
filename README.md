@@ -4,10 +4,6 @@
 
 My dotfiles for Mac and Ubuntu setup.
 
-## TODO
-
-- [ ] Add plugins to Brave
-
 ## Highlights
 
 - Minimal efforts to install everything, using a [Makefile](./Makefile)
