@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/daniel-trevino/dotfiles/compare/v2.0.0...v2.1.0) (2024-09-12)
+
+
+### Features
+
+* use lsd instead of exa ([11f4aec](https://github.com/daniel-trevino/dotfiles/commit/11f4aec0ec708912068ca4c62fb85610d9670221))
+
 # [2.0.0](https://github.com/daniel-trevino/dotfiles/compare/v1.28.0...v2.0.0) (2024-09-12)
 
 
