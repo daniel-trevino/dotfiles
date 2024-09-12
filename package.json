@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "setup:husky": "pnpx husky install",
-    "semantic-release": "pnpx semantic-release",
+    "semantic-release": "HUSKY=0 pnpx semantic-release",
     "prepare": "pnpx husky"
   },
   "devDependencies": {
