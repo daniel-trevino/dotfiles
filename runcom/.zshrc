@@ -1,5 +1,5 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+# Increase FUNCNEST value
+export FUNCNEST=1000
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -22,8 +22,7 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-### End of Zinit's installer chunk
-
+## End of Zinit's installer chunk
 
 # Enable autocompletions
 autoload -Uz compinit
@@ -34,10 +33,12 @@ else
   compinit -C -i
 fi
 zmodload -i zsh/complist
+
 # Save history so we get auto suggestions
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
 SAVEHIST=$HISTSIZE
+
 # Options
 setopt auto_cd # cd by typing directory name if it's not a command
 setopt auto_list # automatically list choices on ambiguous completion
@@ -49,12 +50,14 @@ setopt inc_append_history # save history entries as soon as they are entered
 setopt share_history # share history between different instances
 setopt correct_all # autocorrect commands
 setopt interactive_comments # allow comments in interactive shells
+
 # Improve autocompletion style
 zstyle ':completion:*' menu select # select completions with arrow keys
 zstyle ':completion:*' group-name '' # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
+
 # Plugins
-zinit light zdharma-continuum/fast-syntax-highlighting
+# zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-completions
@@ -70,8 +73,9 @@ plugins=(
 # Keybindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
 # Theme
-zinit light denysdovhan/spaceship-prompt
+# zinit light denysdovhan/spaceship-prompt
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
   dir           # Current directory section
@@ -89,9 +93,6 @@ SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-
 # Reload after loading plugins
 source $ZSH/oh-my-zsh.sh
 
@@ -102,27 +103,27 @@ ZSH_DISABLE_COMPFIX=true
 export PATH=/usr/local/share/npm/bin:$PATH
 
 # place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  [[ -a .nvmrc ]] || return
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   [[ -a .nvmrc ]] || return
+#   local node_version="$(nvm version)"
+#   local nvmrc_path="$(nvm_find_nvmrc)"
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#       nvm use
+#     fi
+#   elif [ "$node_version" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 # Eval to fix thefuck
 eval $(thefuck --alias)
@@ -143,13 +144,21 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/sls.zsh
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
 # pnpm
-export PNPM_HOME="/Users/trevino002/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+# export PNPM_HOME="/Users/trevino002/Library/pnpm"
+# case ":$PATH:" in
+#   *":$PNPM_HOME:"*) ;;
+#   *) export PATH="$PNPM_HOME:$PATH" ;;
+# esac
+# # pnpm end
+# bun completions
+[ -s "/Users/trevino002/.bun/_bun" ] && source "/Users/trevino002/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# ASDF
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+export PATH="$HOME/.asdf/shims:$PATH"

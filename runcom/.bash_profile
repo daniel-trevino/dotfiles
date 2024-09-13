@@ -1,8 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/bash_profile.pre.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.pre.bash"
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash"
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -50,7 +45,8 @@ export YVM_DIR="$HOME/.yvm"
 # Rust & Cargo
 . "$HOME/.cargo/env"
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.post.bash"
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash"
+# ASDF
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+export PATH="$HOME/.asdf/shims:$PATH"
+
