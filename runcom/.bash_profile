@@ -48,5 +48,3 @@ export YVM_DIR="$HOME/.yvm"
 # ASDF
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
-export PATH="$HOME/.asdf/shims:$PATH"
-

@@ -161,4 +161,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # ASDF
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
-export PATH="$HOME/.asdf/shims:$PATH"
