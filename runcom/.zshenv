@@ -40,10 +40,4 @@ unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
 export DOTFILES_DIR DOTFILES_EXTRA_DIR
 
 ## ----------------- Custom config -----------------
-
-## NPM Token
-# export NPM_TOKEN=$(cat ~/.npmrc | sed 's/^.*=//')
-
-# YVM
-export YVM_DIR="$HOME/.yvm"
 . "$HOME/.cargo/env"

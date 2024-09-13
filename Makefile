@@ -2,12 +2,12 @@ SHELL = /bin/bash
 DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 OS := $(shell bin/is-supported bin/is-macos macos linux)
 PATH := $(DOTFILES_DIR)/bin:$(PATH)
+ATUIN_DIR := $(HOME)/.atuin
 NVM_DIR := $(HOME)/.nvm
 VIM_DIR := ~/.vim_runtime
 CARGO_DIR := $(HOME)/.cargo
 OH_MY_ZSH_DIR := ~/.oh-my-zsh
 ZINIT_DIR := ~/.local/share/zinit/zinit.git
-YVM_DIR := $(HOME)/.yvm
 export XDG_CONFIG_HOME := $(HOME)/.config
 VSCODE_CONFIG_HOME_MACOS := $(HOME)/Library/Application\ Support/Code/User
 VSCODE_CONFIG_HOME_LINUX := $(HOME)/.config/Code/User
@@ -16,9 +16,9 @@ VSCODE_CONFIG_HOME_LINUX := $(HOME)/.config/Code/User
 
 all: $(OS)
 
-macos: sudo core-macos packages link-macos install-vim select-shell-terminal
+macos: sudo core-macos packages link-macos atuin install-vim select-shell-terminal
 
-linux: core-linux link-linux install-vim
+linux: core-linux link-linux atuin install-vim
 
 core-macos: brew bash git npm ruby
 
@@ -39,7 +39,7 @@ ifndef GITHUB_ACTION
 	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 endif
 
-packages: brew-packages cask-apps node-packages oh-my-zsh zinit yvm cargo-rust
+packages: brew-packages cask-apps node-packages oh-my-zsh zinit cargo-rust
 
 link-macos: stow-$(OS)
 	for FILE in $(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
@@ -81,9 +81,6 @@ install-vim:
 
 brew:
 	is-executable brew || curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
-
-yvm:
-	if ! [ -d $(YVM_DIR) ]; then curl -s https://raw.githubusercontent.com/tophat/yvm/master/scripts/install.js | node; fi
 
 bash: BASH=/usr/local/bin/bash
 bash: SHELLS=/private/etc/shells
@@ -131,6 +128,11 @@ oh-my-zsh:
 		curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install-oh-my-zsh.sh && \
 		sh install-oh-my-zsh.sh --unattended && \
 		rm install-oh-my-zsh.sh; \
+	fi
+
+atuin:
+	if ! [ -d $(ATUIN_DIR) ]; then \
+		curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh; \
 	fi
 
 # Cargo (Rust) package manager

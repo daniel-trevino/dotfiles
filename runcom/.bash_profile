@@ -38,13 +38,15 @@ unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
 
 export DOTFILES_DIR DOTFILES_EXTRA_DIR
 
-# YVM
-export YVM_DIR="$HOME/.yvm"
-[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
-
 # Rust & Cargo
 . "$HOME/.cargo/env"
 
 # ASDF
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+
+. "$HOME/.atuin/bin/env"
+
+# Atuin
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"

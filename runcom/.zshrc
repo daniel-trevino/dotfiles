@@ -141,3 +141,8 @@ asdf_auto_install() {
 autoload -U add-zsh-hook
 add-zsh-hook chpwd asdf_auto_install
 asdf_auto_install
+
+. "$HOME/.atuin/bin/env"
+
+# Atuin
+eval "$(atuin init zsh)"
