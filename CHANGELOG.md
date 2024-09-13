@@ -1,3 +1,21 @@
+# [2.2.0](https://github.com/daniel-trevino/dotfiles/compare/v2.1.0...v2.2.0) (2024-09-13)
+
+
+### Bug Fixes
+
+* rm vscode plugin that does not exist anymore ([57968ed](https://github.com/daniel-trevino/dotfiles/commit/57968ed47c2001b560abdeda97b210b3e4bb92c5))
+* terminal icons with lsd ([cbebcd1](https://github.com/daniel-trevino/dotfiles/commit/cbebcd10163d9fc87811315d143957a392eaeb9b))
+* using asdf as main package manager ([b923b2f](https://github.com/daniel-trevino/dotfiles/commit/b923b2ff70fccbdeeadb469dcc0eef27a253410e))
+
+
+### Features
+
+* install atuin ([37f0a5c](https://github.com/daniel-trevino/dotfiles/commit/37f0a5cb06e7e7bbe6faf0df1d7fabf4f51646c5))
+* rm fig ([2caab39](https://github.com/daniel-trevino/dotfiles/commit/2caab392ac469ced9f6e04ec2c3ebf06895d3df3))
+* rm funcnest value ([12fea24](https://github.com/daniel-trevino/dotfiles/commit/12fea246818ff11b721ff99c6ff34729e1fb121e))
+* rm vscode insiders ([e920b1c](https://github.com/daniel-trevino/dotfiles/commit/e920b1ca3bc581d04f6e50d6db47f5d86bebeba0))
+* use asdf package manager ([eac398e](https://github.com/daniel-trevino/dotfiles/commit/eac398edcfb7b1e64d8792e49a624152161e8df7))
+
 # [2.1.0](https://github.com/daniel-trevino/dotfiles/compare/v2.0.0...v2.1.0) (2024-09-12)
 
 
