@@ -102,29 +102,6 @@ ZSH_DISABLE_COMPFIX=true
 # Fixes global npm packages installation
 export PATH=/usr/local/share/npm/bin:$PATH
 
-# place this after nvm initialization!
-# autoload -U add-zsh-hook
-# load-nvmrc() {
-#   [[ -a .nvmrc ]] || return
-#   local node_version="$(nvm version)"
-#   local nvmrc_path="$(nvm_find_nvmrc)"
-
-#   if [ -n "$nvmrc_path" ]; then
-#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-#     if [ "$nvmrc_node_version" = "N/A" ]; then
-#       nvm install
-#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
-#       nvm use
-#     fi
-#   elif [ "$node_version" != "$(nvm version default)" ]; then
-#     echo "Reverting to nvm default version"
-#     nvm use default
-#   fi
-# }
-# add-zsh-hook chpwd load-nvmrc
-# load-nvmrc
-
 # Eval to fix thefuck
 eval $(thefuck --alias)
 
@@ -144,13 +121,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/sls.zsh
 
-# pnpm
-# export PNPM_HOME="/Users/trevino002/Library/pnpm"
-# case ":$PATH:" in
-#   *":$PNPM_HOME:"*) ;;
-#   *) export PATH="$PNPM_HOME:$PATH" ;;
-# esac
-# # pnpm end
 # bun completions
 [ -s "/Users/trevino002/.bun/_bun" ] && source "/Users/trevino002/.bun/_bun"
 
@@ -161,3 +131,16 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # ASDF
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+export PATH="$HOME/.asdf/shims:$PATH"
+
+# Function to automatically install tools based on .tool-versions
+asdf_auto_install() {
+  if [ -f ".tool-versions" ]; then
+    asdf install
+  fi
+}
+
+# Hook the function to the shell prompt command
+autoload -U add-zsh-hook
+add-zsh-hook chpwd asdf_auto_install
+asdf_auto_install
