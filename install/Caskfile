@@ -34,7 +34,6 @@ cask "slack"
 cask "spectacle"
 cask "spotify"
 cask "visual-studio-code"
-cask "visual-studio-code-insiders"
 cask "obsidian"
 
 # cask "kaleidoscope"
