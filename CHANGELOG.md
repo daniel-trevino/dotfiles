@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/daniel-trevino/dotfiles/compare/v2.2.0...v2.3.0) (2024-09-18)
+
+
+### Features
+
+* add more terminal plugins ([fb55bcc](https://github.com/daniel-trevino/dotfiles/commit/fb55bcc461ddad6cf13a1d008b89bc2c449277f5))
+
 # [2.2.0](https://github.com/daniel-trevino/dotfiles/compare/v2.1.0...v2.2.0) (2024-09-13)
 
 
