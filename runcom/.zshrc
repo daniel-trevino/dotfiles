@@ -146,3 +146,9 @@ asdf_auto_install
 
 # Atuin
 eval "$(atuin init zsh)"
+
+# fzf key bindings for completion
+eval "$(fzf --zsh)"
+
+# Zoxide (better cd)
+eval "$(zoxide init zsh)"

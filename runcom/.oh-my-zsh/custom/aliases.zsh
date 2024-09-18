@@ -3,10 +3,11 @@
 alias reload="source ~/.zshrc"
 alias _="sudo"
 alias rr="rm -rf"
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-alias p="cd ~/Projects"
-alias dot="cd ~/.dotfiles && code ."
+alias dl="z ~/Downloads"
+alias dt="z ~/Desktop"
+alias p="z ~/Projects"
+alias dot="z ~/.dotfiles && code ."
+alias cd="z"
 
 # Development
 
@@ -103,11 +104,11 @@ alias paths='echo -e ${PATH//:/\\n}'
 alias l="lsd -lAhF --group-dirs first"
 alias ll="lsd -l --tree"
 
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias -- -="cd -"                  # Go to previous dir with -
-alias cd.='cd $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
+alias ..="z .."
+alias ...="z ../.."
+alias ....="z ../../.."
+alias -- -="z -"                  # Go to previous dir with -
+alias cd.='z $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
 
 # npm
 
