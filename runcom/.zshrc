@@ -137,6 +137,9 @@ asdf_auto_install() {
   fi
 }
 
+# bat
+export BAT_THEME=Dracula
+
 # Hook the function to the shell prompt command
 autoload -U add-zsh-hook
 add-zsh-hook chpwd asdf_auto_install
