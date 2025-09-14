@@ -9,10 +9,6 @@ CARGO_DIR := $(HOME)/.cargo
 OH_MY_ZSH_DIR := ~/.oh-my-zsh
 ZINIT_DIR := ~/.local/share/zinit/zinit.git
 export XDG_CONFIG_HOME := $(HOME)/.config
-VSCODE_CONFIG_HOME_MACOS := $(HOME)/Library/Application\ Support/Code/User
-VSCODE_CONFIG_HOME_LINUX := $(HOME)/.config/Code/User
-
-.PHONY: test
 
 all: $(OS)
 
@@ -44,32 +40,23 @@ packages: brew-packages cask-apps node-packages oh-my-zsh zinit cargo-rust
 link-macos: stow-$(OS)
 	for FILE in $(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
 		mv -v $(HOME)/$$FILE{,.bak}; fi; done
-	for FILE in $(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME_MACOS)/$$FILE -a ! -h $(VSCODE_CONFIG_HOME_MACOS)/$$FILE ]; then \
-		mv -v $(VSCODE_CONFIG_HOME_MACOS)/$$FILE{,.bak}; fi; done
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -v -t $(HOME) runcom
 	stow -v -t $(XDG_CONFIG_HOME) config
-	stow -v -t $(VSCODE_CONFIG_HOME_MACOS) VSCode
 
 
 link-linux: stow-$(OS)
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
 		mv -v $(HOME)/$$FILE{,.bak}; fi; done
-	for FILE in $$(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME_LINUX)/$$FILE -a ! -h $(VSCODE_CONFIG_HOME_LINUX)/$$FILE ]; then \
-		mv -v $(VSCODE_CONFIG_HOME_LINUX)/$$FILE{,.bak}; fi; done
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -v -t $(HOME) runcom
 	stow -v -t $(XDG_CONFIG_HOME) config
-	# stow -v -t $(VSCODE_CONFIG_HOME_LINUX) VSCode # TODO - fix support linux
 
 unlink: stow-$(OS)
 	stow --delete -t $(HOME) runcom
 	stow --delete -t $(XDG_CONFIG_HOME) config
-	stow --delete -t $(VSCODE_CONFIG_HOME) VSCode
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE.bak ]; then \
 		mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done
-	for FILE in $$(\ls -A VSCode); do if [ -f $(VSCODE_CONFIG_HOME)/$$FILE.bak ]; then \
-		mv -v $(VSCODE_CONFIG_HOME)/$$FILE.bak $(VSCODE_CONFIG_HOME)/$${FILE%%.bak}; fi; done
 
 install-vim:
 	if ! [ -d $(VIM_DIR) ]; then \
@@ -114,14 +101,10 @@ brew-packages: brew
 
 cask-apps: brew
 	brew bundle --file=$(DOTFILES_DIR)/install/Caskfile --verbose || true
-	for EXT in $$(cat install/VSCodePlugins); do code --install-extension $$EXT; done
 	xattr -d -r com.apple.quarantine ~/Library/QuickLook
 
 node-packages: npm
 	. $(NVM_DIR)/nvm.sh; npm install -g $(shell cat install/npmfile)
-
-test:
-	. $(NVM_DIR)/nvm.sh; bats test
 
 oh-my-zsh:
 	if ! [ -d $(OH_MY_ZSH_DIR) ]; then \

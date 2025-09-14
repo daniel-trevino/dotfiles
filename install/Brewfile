@@ -39,6 +39,7 @@ brew "shellcheck"
 brew "ssh-copy-id"
 brew "starship"
 brew "stow"
+brew "tailscale"
 brew "terminal-notifier" # Needed for the terminal plugin zsh-notify
 brew "tlrc"
 brew "thefuck"

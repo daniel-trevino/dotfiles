@@ -111,15 +111,8 @@ export PATH="$HOME/.serverless/bin:$PATH"
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/danieltrevino/Projects/aws/node_modules/tabtab/.completions/sls.zsh
-
 # bun completions
-[ -s "/Users/trevino002/.bun/_bun" ] && source "/Users/trevino002/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
