@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# Check if running on Apple Silicon (ARM64) architecture
-if [[ "$(uname -m)" == "arm64" ]]; then
-  exit 0
-else
-  exit 1
-fi

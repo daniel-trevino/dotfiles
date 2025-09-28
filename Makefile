@@ -68,39 +68,26 @@ install-vim:
 
 brew:
 	@if ! is-executable brew; then \
-		echo "Installing Homebrew..."; \
+		echo "Installing Homebrew for Apple Silicon..."; \
 		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
-		ARCH=$$(uname -m); \
-		if [ "$$ARCH" = "arm64" ]; then \
-			echo "Detected Apple Silicon, setting up PATH for /opt/homebrew"; \
-			echo 'eval "$$(/opt/homebrew/bin/brew shellenv)"' >> $(HOME)/.zprofile; \
-		else \
-			echo "Detected Intel Mac, setting up PATH for /usr/local"; \
-			echo 'eval "$$(/usr/local/bin/brew shellenv)"' >> $(HOME)/.zprofile; \
-		fi; \
+		echo 'eval "$$(/opt/homebrew/bin/brew shellenv)"' >> $(HOME)/.zprofile; \
 	fi
 
+bash: BASH=/opt/homebrew/bin/bash
 bash: SHELLS=/private/etc/shells
 bash: brew
-	@ARCH=$$(uname -m); \
-	if [ "$$ARCH" = "arm64" ]; then \
-		BASH=/opt/homebrew/bin/bash; \
-	else \
-		BASH=/usr/local/bin/bash; \
-	fi; \
-	if ! grep -q $$BASH $(SHELLS); then \
+	@if ! grep -q $(BASH) $(SHELLS); then \
 		brew install bash bash-completion@2 pcre && \
-		sudo append $$BASH $(SHELLS); \
+		sudo append $(BASH) $(SHELLS); \
 		if [ -z "$(GITHUB_ACTION)" ]; then \
-			chsh -s $$BASH; \
+			chsh -s $(BASH); \
 		else \
-			sudo chsh -s $$BASH; \
+			sudo chsh -s $(BASH); \
 		fi; \
 	fi
 
 git: brew
 	brew install git git-extras
-	$(DOTFILES_DIR)/bin/setup-git-config
 
 npm:
 	if ! [ -d $(NVM_DIR)/.git ]; then git clone https://github.com/creationix/nvm.git $(NVM_DIR); fi
