@@ -36,9 +36,6 @@ cask "spotify"
 cask "visual-studio-code"
 cask "obsidian"
 
-# cask "kaleidoscope"
-# cask "rectangle"
-
 # Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
 cask "qlcolorcode"
 cask "qlstephen"
