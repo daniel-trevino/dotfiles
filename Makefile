@@ -1,7 +1,7 @@
 SHELL = /bin/bash
 DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 OS := $(shell bin/is-supported bin/is-macos macos linux)
-PATH := $(DOTFILES_DIR)/bin:$(PATH)
+PATH := /opt/homebrew/bin:$(DOTFILES_DIR)/bin:$(PATH)
 ATUIN_DIR := $(HOME)/.atuin
 NVM_DIR := $(HOME)/.nvm
 VIM_DIR := ~/.vim_runtime
@@ -72,7 +72,7 @@ brew:
 		echo "The Makefile will prompt for sudo when needed."; \
 		exit 1; \
 	fi
-	@if ! is-executable brew; then \
+	@if ! command -v brew >/dev/null 2>&1; then \
 		echo "Installing Homebrew for Apple Silicon..."; \
 		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
 		echo 'eval "$$(/opt/homebrew/bin/brew shellenv)"' >> $(HOME)/.zprofile; \
