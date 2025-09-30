@@ -67,6 +67,11 @@ install-vim:
 	fi
 
 brew:
+	@if [ "$(USER)" = "root" ]; then \
+		echo "Error: Do not run 'sudo make'. Run 'make' instead."; \
+		echo "The Makefile will prompt for sudo when needed."; \
+		exit 1; \
+	fi
 	@if ! is-executable brew; then \
 		echo "Installing Homebrew for Apple Silicon..."; \
 		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
@@ -79,7 +84,9 @@ bash: brew
 	@if ! grep -q $(BASH) $(SHELLS); then \
 		brew install bash bash-completion@2 pcre && \
 		sudo append $(BASH) $(SHELLS); \
-		if [ -z "$(GITHUB_ACTION)" ]; then \
+		if [ "$(USER)" = "root" ]; then \
+			echo "Warning: Running as root, skipping shell change"; \
+		elif [ -z "$(GITHUB_ACTION)" ]; then \
 			chsh -s $(BASH); \
 		else \
 			sudo chsh -s $(BASH); \
