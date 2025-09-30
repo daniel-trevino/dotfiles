@@ -1,5 +1,4 @@
 tap "goles/battery"
-tap "homebrew/bundle"
 
 brew "asdf"
 brew "awscli"
