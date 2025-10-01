@@ -50,3 +50,8 @@ export DOTFILES_DIR DOTFILES_EXTRA_DIR
 # Atuin
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 eval "$(atuin init bash)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.lmstudio/bin"
+# End of LM Studio CLI section
+
