@@ -23,6 +23,11 @@ zinit light-mode for \
 
 # Enable autocompletions
 autoload -Uz compinit
+
+# Only add completion paths that exist
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+[ -d /usr/local/share/zsh/site-functions ] && fpath=(/usr/local/share/zsh/site-functions $fpath)
+
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
   compinit -i
@@ -30,6 +35,9 @@ else
   compinit -C -i
 fi
 zmodload -i zsh/complist
+
+# Skip missing completion functions gracefully
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 
 # Save history so we get auto suggestions
 HISTFILE=$HOME/.zsh_history
@@ -59,7 +67,8 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-completions
 zinit light buonomo/yarn-completion
-zinit light marzocchi/zsh-notify
+# Note: zsh-notify disabled - shows "unsupported environment" warning in some terminal configurations
+# [[ -x "$(command -v terminal-notifier)" ]] && zinit light marzocchi/zsh-notify
 
 plugins=(
   colored-man-pages
@@ -119,24 +128,26 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # ASDF
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
-export PATH="$HOME/.asdf/shims:$PATH"
+if [ -f "$HOME/.asdf/asdf.sh" ]; then
+  . $HOME/.asdf/asdf.sh
+  . $HOME/.asdf/completions/asdf.bash
+  export PATH="$HOME/.asdf/shims:$PATH"
 
-# Function to automatically install tools based on .tool-versions
-asdf_auto_install() {
-  if [ -f ".tool-versions" ]; then
-    asdf install
-  fi
-}
+  # Function to automatically install tools based on .tool-versions
+  asdf_auto_install() {
+    if [ -f ".tool-versions" ]; then
+      asdf install
+    fi
+  }
+
+  # Hook the function to the shell prompt command
+  autoload -U add-zsh-hook
+  add-zsh-hook chpwd asdf_auto_install
+  asdf_auto_install
+fi
 
 # bat
 export BAT_THEME=Dracula
-
-# Hook the function to the shell prompt command
-autoload -U add-zsh-hook
-add-zsh-hook chpwd asdf_auto_install
-asdf_auto_install
 
 . "$HOME/.atuin/bin/env"
 

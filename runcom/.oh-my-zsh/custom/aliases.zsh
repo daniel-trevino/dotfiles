@@ -235,8 +235,9 @@ function al {
 
 # Possibility to load local scripts for the machine who needs it and that should not be commited to the repo
 DIR="$HOME/.dotfiles/runcom/local-scripts"
-if [ "$(ls -A $DIR)" ]; then
-  for i in $HOME/.dotfiles/runcom/local-scripts/*;
-    do source $i
+if [ -d "$DIR" ]; then
+  setopt local_options null_glob
+  for i in $HOME/.dotfiles/runcom/local-scripts/*; do
+    [ -f "$i" ] && source "$i"
   done
 fi

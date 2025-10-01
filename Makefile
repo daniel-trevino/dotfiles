@@ -12,7 +12,7 @@ export XDG_CONFIG_HOME := $(HOME)/.config
 
 all: $(OS)
 
-macos: sudo core-macos packages link-macos atuin install-vim select-shell-terminal
+macos: sudo core-macos packages link-macos cleanup-shell atuin install-vim select-shell-terminal
 
 linux: core-linux link-linux atuin install-vim
 
@@ -43,6 +43,7 @@ link-macos: stow-$(OS)
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -v -t $(HOME) runcom
 	stow -v -t $(XDG_CONFIG_HOME) config
+	@echo "Dotfiles symlinked successfully"
 
 
 link-linux: stow-$(OS)
@@ -144,3 +145,28 @@ zinit:
 select-shell-terminal:
   # Change default shell from /bin/bash to zsh
 	chsh -s /bin/zsh
+
+# Cleanup shell completions and caches
+# This target fixes common shell startup warnings by:
+# - Removing broken completion symlinks from old Intel Mac paths
+# - Generating cargo completions if Rust is installed
+# - Clearing stale completion caches
+cleanup-shell:
+	@echo "Cleaning up shell completions and caches..."
+	@# Remove broken symlinks from old Intel Mac completion directory
+	@if [ -d /usr/local/share/zsh/site-functions ]; then \
+		find /usr/local/share/zsh/site-functions -type l ! -exec test -e {} \; -delete 2>/dev/null || true; \
+	fi
+	@# Generate cargo completions if cargo is installed
+	@if command -v rustup >/dev/null 2>&1; then \
+		mkdir -p /opt/homebrew/share/zsh/site-functions; \
+		rustup completions zsh cargo > /opt/homebrew/share/zsh/site-functions/_cargo 2>/dev/null || true; \
+	fi
+	@# Clear completion cache to force regeneration
+	@rm -f $(HOME)/.zcompdump* 2>/dev/null || true
+	@echo "Shell cleanup completed"
+
+# Reload shell configuration (useful after making changes)
+reload-shell:
+	@echo "Reloading shell configuration..."
+	@zsh -c "source ~/.zprofile && source ~/.zshrc" && echo "✅ Shell reloaded successfully"
