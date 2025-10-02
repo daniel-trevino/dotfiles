@@ -114,9 +114,6 @@ Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`.
 - `warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory`
   You might have spelled the locale wrong. Check how the format of the locale is supposed to be written.
 
-- `How to add new VSCode Plugins?`
-  Add the name of the plugin on `/install/VSCodePlugins`. Look at the `Unique Identifier` for each plugin at: [VSCode Marketplace](https://marketplace.visualstudio.com/vscode)
-
 - `How to add new mac software?`
   Add the name of it on `/install/Caskfile`. Look at the names at: [Homebrew Cask](https://formulae.brew.sh/cask/)
 
