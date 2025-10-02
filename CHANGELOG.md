@@ -1,3 +1,19 @@
+# [2.4.0](https://github.com/daniel-trevino/dotfiles/compare/v2.3.1...v2.4.0) (2025-10-02)
+
+
+### Bug Fixes
+
+* prevent running Makefile as root and improve shell change handling ([cde27cd](https://github.com/daniel-trevino/dotfiles/commit/cde27cd13c74e1040d8b5731d21a34b2f2063f0b))
+* update COMPUTER_NAME in defaults.sh ([cc47cf4](https://github.com/daniel-trevino/dotfiles/commit/cc47cf4f01f5d7890543dfa1dadd46b48ed03540))
+
+
+### Features
+
+* add LM Studio CLI to shell configuration ([af66f16](https://github.com/daniel-trevino/dotfiles/commit/af66f165012a2de6ad21bacf0e3ae0cd0766ba3f))
+* enhance shell setup and cleanup in Makefile and runcom files ([9dc9ee6](https://github.com/daniel-trevino/dotfiles/commit/9dc9ee6b01f6511ce2c87bd55479a383b7986642))
+* update Brewfile and Caskfile with new packages ([77dff10](https://github.com/daniel-trevino/dotfiles/commit/77dff1022c005c6719ca81eec4a9f31c78327d25))
+* update Makefile to improve path handling and Homebrew installation check ([777c857](https://github.com/daniel-trevino/dotfiles/commit/777c8575a8dbad0a7e844295a5a287dcd8b8b85f))
+
 ## [2.3.1](https://github.com/daniel-trevino/dotfiles/compare/v2.3.0...v2.3.1) (2024-09-19)
 
 
