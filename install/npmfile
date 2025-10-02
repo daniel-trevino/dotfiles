@@ -1,7 +1,6 @@
 fkill-cli
-npm-check
 prettier
+@biomejs/biome
 release-it
 svgo
 serve
-@remix-project/remixd
