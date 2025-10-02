@@ -11,8 +11,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # os: [macos-latest, ubuntu-20.04] # Remove macos since it's expensive to run on GA
-        os: [ubuntu-20.04	] # Not doing ubuntu latest due to this error https://askubuntu.com/questions/1431786/grub-efi-amd64-signed-dependency-issue-in-ubuntu-22-04lts
+        # os: [macos-latest, ubuntu-latest] # Remove macos since it's expensive to run on GA
+        os: [ubuntu-latest] # Using ubuntu-latest (ubuntu-20.04 is deprecated)
 
     steps:
       - name: Clean up installed software
