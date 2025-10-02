@@ -366,17 +366,6 @@ defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreS
 defaults write com.apple.finder NewWindowTarget -string "PfHm"
 
 ###############################################################################
-# iTerm2                                                  #
-###############################################################################
-
-# Specify the preferences directory
-# "PfDe" - Desktop
-# "PfDo" - Documents
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.dotfiles/iterm2"
-# Tell iTerm2 to use the custom preferences in the directory
-defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-
-###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
