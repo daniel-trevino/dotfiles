@@ -10,6 +10,9 @@ OH_MY_ZSH_DIR := ~/.oh-my-zsh
 ZINIT_DIR := ~/.local/share/zinit/zinit.git
 export XDG_CONFIG_HOME := $(HOME)/.config
 
+# Brew command that works whether brew is in PATH or freshly installed
+BREW = $$(command -v brew 2>/dev/null || echo /opt/homebrew/bin/brew)
+
 all: $(OS)
 
 macos: sudo core-macos packages link-macos cleanup-shell atuin install-vim select-shell-terminal
@@ -24,7 +27,7 @@ core-linux:
 	apt-get dist-upgrade -f
 
 stow-macos: brew
-	is-executable stow || brew install stow
+	is-executable stow || $(BREW) install stow
 
 stow-linux: core-linux
 	is-executable stow || apt-get -y install stow
@@ -83,7 +86,7 @@ bash: BASH=/opt/homebrew/bin/bash
 bash: SHELLS=/private/etc/shells
 bash: brew
 	@if ! grep -q $(BASH) $(SHELLS); then \
-		brew install bash bash-completion@2 pcre && \
+		$(BREW) install bash bash-completion@2 pcre && \
 		sudo append $(BASH) $(SHELLS); \
 		if [ "$(USER)" = "root" ]; then \
 			echo "Warning: Running as root, skipping shell change"; \
@@ -95,20 +98,20 @@ bash: brew
 	fi
 
 git: brew
-	brew install git git-extras
+	$(BREW) install git git-extras
 
 npm:
 	if ! [ -d $(NVM_DIR)/.git ]; then git clone https://github.com/creationix/nvm.git $(NVM_DIR); fi
 	. $(NVM_DIR)/nvm.sh; nvm install --lts
 
 ruby: brew
-	brew install ruby
+	$(BREW) install ruby
 
 brew-packages: brew
-	brew bundle --file=$(DOTFILES_DIR)/install/Brewfile
+	$(BREW) bundle --file=$(DOTFILES_DIR)/install/Brewfile
 
 cask-apps: brew
-	brew bundle --file=$(DOTFILES_DIR)/install/Caskfile --verbose || true
+	$(BREW) bundle --file=$(DOTFILES_DIR)/install/Caskfile --verbose || true
 	xattr -d -r com.apple.quarantine ~/Library/QuickLook
 
 node-packages: npm
