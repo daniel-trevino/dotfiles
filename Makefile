@@ -112,7 +112,9 @@ brew-packages: brew
 
 cask-apps: brew
 	$(BREW) bundle --file=$(DOTFILES_DIR)/install/Caskfile --verbose || true
-	xattr -d -r com.apple.quarantine ~/Library/QuickLook
+	@if [ -d ~/Library/QuickLook ]; then \
+		xattr -d -r com.apple.quarantine ~/Library/QuickLook 2>/dev/null || true; \
+	fi
 
 node-packages: npm
 	. $(NVM_DIR)/nvm.sh; npm install -g $(shell cat install/npmfile)
