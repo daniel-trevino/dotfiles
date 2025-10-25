@@ -135,7 +135,7 @@ atuin:
 cargo-rust:
 	if ! [ -d $(CARGO_DIR) ]; then \
 		curl -fsSL https://sh.rustup.rs -o sh.rustup.rs && \
-		sh sh.rustup.rs --unattended && \
+		sh sh.rustup.rs -y && \
 		rm sh.rustup.rs; \
 	fi
 
