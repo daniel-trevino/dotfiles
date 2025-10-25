@@ -42,8 +42,13 @@ endif
 packages: brew-packages cask-apps node-packages oh-my-zsh zinit cargo-rust
 
 link-macos: stow-$(OS)
-	for FILE in $(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
-		mv -v $(HOME)/$$FILE{,.bak}; fi; done
+	@echo "Backing up existing dotfiles..."
+	@for FILE in .bash_profile .bashrc .inputrc .zprofile .zshenv .zshrc; do \
+		if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
+			echo "Backing up $$FILE to $$FILE.bak"; \
+			mv -v $(HOME)/$$FILE $(HOME)/$$FILE.bak; \
+		fi; \
+	done
 	mkdir -p $(XDG_CONFIG_HOME)
 	$(STOW) -v -t $(HOME) runcom
 	$(STOW) -v -t $(XDG_CONFIG_HOME) config
@@ -51,8 +56,13 @@ link-macos: stow-$(OS)
 
 
 link-linux: stow-$(OS)
-	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
-		mv -v $(HOME)/$$FILE{,.bak}; fi; done
+	@echo "Backing up existing dotfiles..."
+	@for FILE in .bash_profile .bashrc .inputrc .zprofile .zshenv .zshrc; do \
+		if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
+			echo "Backing up $$FILE to $$FILE.bak"; \
+			mv -v $(HOME)/$$FILE $(HOME)/$$FILE.bak; \
+		fi; \
+	done
 	mkdir -p $(XDG_CONFIG_HOME)
 	$(STOW) -v -t $(HOME) runcom
 	$(STOW) -v -t $(XDG_CONFIG_HOME) config
