@@ -12,6 +12,7 @@ export XDG_CONFIG_HOME := $(HOME)/.config
 
 # Brew command that works whether brew is in PATH or freshly installed
 BREW = $$(command -v brew 2>/dev/null || echo /opt/homebrew/bin/brew)
+STOW = $$(command -v stow 2>/dev/null || echo /opt/homebrew/bin/stow)
 
 all: $(OS)
 
@@ -44,8 +45,8 @@ link-macos: stow-$(OS)
 	for FILE in $(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
 		mv -v $(HOME)/$$FILE{,.bak}; fi; done
 	mkdir -p $(XDG_CONFIG_HOME)
-	stow -v -t $(HOME) runcom
-	stow -v -t $(XDG_CONFIG_HOME) config
+	$(STOW) -v -t $(HOME) runcom
+	$(STOW) -v -t $(XDG_CONFIG_HOME) config
 	@echo "Dotfiles symlinked successfully"
 
 
@@ -53,12 +54,12 @@ link-linux: stow-$(OS)
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
 		mv -v $(HOME)/$$FILE{,.bak}; fi; done
 	mkdir -p $(XDG_CONFIG_HOME)
-	stow -v -t $(HOME) runcom
-	stow -v -t $(XDG_CONFIG_HOME) config
+	$(STOW) -v -t $(HOME) runcom
+	$(STOW) -v -t $(XDG_CONFIG_HOME) config
 
 unlink: stow-$(OS)
-	stow --delete -t $(HOME) runcom
-	stow --delete -t $(XDG_CONFIG_HOME) config
+	$(STOW) --delete -t $(HOME) runcom
+	$(STOW) --delete -t $(XDG_CONFIG_HOME) config
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE.bak ]; then \
 		mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done
 
