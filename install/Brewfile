@@ -1,4 +1,5 @@
 tap "goles/battery"
+tap "hashicorp/tap"
 
 brew "asdf"
 brew "awscli"
@@ -19,6 +20,7 @@ brew "goles/battery/battery"
 brew "grep"
 brew "grip"
 brew "go"
+brew "hashicorp/tap/terraform"
 brew "helm"
 brew "httpie"
 brew "imagemagick"

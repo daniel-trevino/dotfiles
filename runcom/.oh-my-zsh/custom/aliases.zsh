@@ -6,7 +6,7 @@ alias rr="rm -rf"
 alias dl="z ~/Downloads"
 alias dt="z ~/Desktop"
 alias p="z ~/Projects"
-alias dot="z ~/.dotfiles && code ."
+alias dot="z ~/.dotfiles && cursor ."
 alias cd="z"
 
 # Development
@@ -241,3 +241,7 @@ if [ -d "$DIR" ]; then
     [ -f "$i" ] && source "$i"
   done
 fi
+
+
+# Execute prettier on all changed files in your branch
+alias pretty="git diff --name-only --diff-filter=ACM \$(git merge-base origin/main HEAD) -- '*.tsx' | xargs npx prettier --write --log-level error"

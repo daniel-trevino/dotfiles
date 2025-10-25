@@ -55,3 +55,13 @@ eval "$(atuin init bash)"
 export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/elliot/.lmstudio/bin"
+# End of LM Studio CLI section
+
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/elliot/.lmstudio/bin"
+# End of LM Studio CLI section
+

@@ -151,6 +151,9 @@ export BAT_THEME=Dracula
 
 . "$HOME/.atuin/bin/env"
 
+# Direnv
+eval "$(direnv hook zsh)"
+
 # Atuin
 eval "$(atuin init zsh)"
 
@@ -164,3 +167,6 @@ eval "$(zoxide init zsh)"
 export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/elliot/.lmstudio/bin"
+# End of LM Studio CLI section
