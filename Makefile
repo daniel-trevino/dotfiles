@@ -186,3 +186,8 @@ cleanup-shell:
 reload-shell:
 	@echo "Reloading shell configuration..."
 	@zsh -c "source ~/.zprofile && source ~/.zshrc" && echo "✅ Shell reloaded successfully"
+
+# Quick install shortcuts for individual package files
+brewfile: brew-packages
+caskfile: cask-apps
+npmfile: node-packages

@@ -65,3 +65,7 @@ export PATH="$PATH:/Users/elliot/.lmstudio/bin"
 export PATH="$PATH:/Users/elliot/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+source ~/.safe-chain/scripts/init-posix.sh # Safe-chain bash initialization script
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init bash)"; fi

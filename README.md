@@ -60,6 +60,18 @@ make
 The installation process in the Makefile is tested on every push and every week in this
 [GitHub Action](https://github.com/daniel-trevino/dotfiles/actions).
 
+## Quick Package Updates
+
+After the initial installation, you can quickly install or update individual package lists without running the full setup:
+
+```bash
+make brewfile   # Install/update Homebrew packages from Brewfile
+make caskfile   # Install/update cask apps from Caskfile
+make npmfile    # Install/update npm packages from npmfile
+```
+
+This is useful when you've added new packages to the install files and want to apply just those changes.
+
 ## Post-Installation
 
 1. Close that terminal that you are using and open a new one. Then you can run the following commands

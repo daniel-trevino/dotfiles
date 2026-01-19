@@ -170,3 +170,8 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/elliot/.lmstudio/bin"
 # End of LM Studio CLI section
+
+source ~/.safe-chain/scripts/init-posix.sh # Safe-chain Zsh initialization script
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+export ANTHROPIC_MODEL="claude-opus-4-5-20251101"
