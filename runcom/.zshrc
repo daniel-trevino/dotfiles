@@ -160,8 +160,10 @@ eval "$(atuin init zsh)"
 # fzf key bindings for completion
 eval "$(fzf --zsh)"
 
-# Zoxide (better cd)
-eval "$(zoxide init zsh)"
+# Zoxide (better cd) - only initialize in interactive shells
+if [[ -o interactive ]]; then
+  eval "$(zoxide init zsh)"
+fi
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:$HOME/.lmstudio/bin"
