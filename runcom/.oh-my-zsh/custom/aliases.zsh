@@ -1,6 +1,7 @@
 # Shortcuts
 
-alias reload="source ~/.zshrc"
+# Use exec zsh for clean reload (avoids completion conflicts from re-sourcing)
+alias reload="exec zsh"
 alias _="sudo"
 alias rr="rm -rf"
 

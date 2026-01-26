@@ -28,19 +28,23 @@ autoload -Uz compinit
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 [ -d /usr/local/share/zsh/site-functions ] && fpath=(/usr/local/share/zsh/site-functions $fpath)
 
-typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
-if [ $(date +'%j') != $updated_at ]; then
-  compinit -i
-else
-  compinit -C -i
+# Guard against multiple compinit calls during reload
+if [[ -z "$_COMPINIT_DONE" ]]; then
+  typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+  if [ $(date +'%j') != $updated_at ]; then
+    compinit -i
+  else
+    compinit -C -i
+  fi
+  zmodload -i zsh/complist
+  _COMPINIT_DONE=1
 fi
-zmodload -i zsh/complist
 
 # Zinit plugins
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-completions
-zinit light buonomo/yarn-completion
+# Note: yarn completion provided by oh-my-zsh yarn plugin below
 
 # Oh My Zsh plugins
 plugins=(
@@ -53,11 +57,11 @@ plugins=(
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+# Fixes permissions with the /usr folder - MUST be before oh-my-zsh.sh
+ZSH_DISABLE_COMPFIX=true
+
 # Load Oh My Zsh (sources custom/*.zsh: aliases, asdf, nvm, options, path)
 source $ZSH/oh-my-zsh.sh
-
-# Fixes permissions with the /usr folder
-ZSH_DISABLE_COMPFIX=true
 
 # =============================================================================
 # Tool Initializations - MUST be after oh-my-zsh loads

@@ -2,8 +2,10 @@
 
 if [ -f "$HOME/.asdf/asdf.sh" ]; then
   . $HOME/.asdf/asdf.sh
-  . $HOME/.asdf/completions/asdf.bash
   export PATH="$HOME/.asdf/shims:$PATH"
+
+  # Append asdf completions to fpath (zsh-native, avoids bash completion issues)
+  fpath=(${ASDF_DIR}/completions $fpath)
 
   # Function to automatically install tools based on .tool-versions
   asdf_auto_install() {
