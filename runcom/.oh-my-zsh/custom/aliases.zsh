@@ -36,6 +36,10 @@ alias ddi='docker rmi $(docker images -q)' ## Deletes all images
 alias ddia='docker rmi $(docker images -q --filter "dangling=true") -f ' ## Deletes all untagged images
 alias dclean="dp && ddc && ddi && ddia" ## Cleans up docker
 
+# cleanup
+
+alias goclean="nix-collect-garbage -d && devenv gc && go clean -cache -modcache"
+
 # yarn
 
 alias y="yarn"
