@@ -2,6 +2,12 @@
 # Note: This file is named 00-tools.zsh to load BEFORE aliases.zsh
 # because aliases depend on tools like zoxide being initialized first.
 
+# Zoxide (better cd) - MUST be initialized FIRST before other tools
+# This creates the 'z' function that aliases depend on
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
 # bat theme
 export BAT_THEME=Dracula
 
@@ -26,12 +32,6 @@ fi
 # fzf - fuzzy finder key bindings
 if command -v fzf >/dev/null 2>&1; then
   eval "$(fzf --zsh)"
-fi
-
-# Zoxide (better cd) - MUST be initialized before aliases.zsh loads
-# This creates the 'z' function that aliases depend on
-if command -v zoxide >/dev/null 2>&1 && [[ -o interactive ]]; then
-  eval "$(zoxide init zsh)"
 fi
 
 # Bun completions
