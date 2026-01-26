@@ -6,9 +6,6 @@ export BAT_THEME=Dracula
 # thefuck - command correction
 eval $(thefuck --alias)
 
-# Starship prompt - https://starship.rs/
-eval "$(starship init zsh)"
-
 # Direnv - directory-specific environment variables
 eval "$(direnv hook zsh)"
 

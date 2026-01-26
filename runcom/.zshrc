@@ -58,3 +58,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Fixes permissions with the /usr folder
 ZSH_DISABLE_COMPFIX=true
+
+# Starship prompt - must be initialized AFTER oh-my-zsh
+# https://starship.rs/
+eval "$(starship init zsh)"
