@@ -4,8 +4,8 @@ alias reload="source ~/.zshrc"
 alias _="sudo"
 alias rr="rm -rf"
 
-# Zoxide-dependent aliases (only if z function exists from 00-tools.zsh)
-if (( $+functions[z] )); then
+# Zoxide-dependent aliases (only if z command exists from 00-tools.zsh)
+if type z &>/dev/null; then
   alias dl="z ~/Downloads"
   alias dt="z ~/Desktop"
   alias p="z ~/Projects"
@@ -112,8 +112,8 @@ alias paths='echo -e ${PATH//:/\\n}'
 alias l="lsd -lAhF --group-dirs first"
 alias ll="lsd -l --tree"
 
-# Zoxide-dependent navigation aliases (only if z function exists from 00-tools.zsh)
-if (( $+functions[z] )); then
+# Zoxide-dependent navigation aliases (only if z command exists from 00-tools.zsh)
+if type z &>/dev/null; then
   alias ..="z .."
   alias ...="z ../.."
   alias ....="z ../../.."
