@@ -4,14 +4,12 @@ alias reload="source ~/.zshrc"
 alias _="sudo"
 alias rr="rm -rf"
 
-# Zoxide-dependent aliases (only if z command exists from 00-tools.zsh)
-if type z &>/dev/null; then
-  alias dl="z ~/Downloads"
-  alias dt="z ~/Desktop"
-  alias p="z ~/Projects"
-  alias dot="z ~/.dotfiles && cursor ."
-  alias cd="z"
-fi
+# Zoxide aliases (z command is initialized in .zshrc after oh-my-zsh)
+alias dl="z ~/Downloads"
+alias dt="z ~/Desktop"
+alias p="z ~/Projects"
+alias dot="z ~/.dotfiles && cursor ."
+alias cd="z"
 
 # Development
 
@@ -112,14 +110,12 @@ alias paths='echo -e ${PATH//:/\\n}'
 alias l="lsd -lAhF --group-dirs first"
 alias ll="lsd -l --tree"
 
-# Zoxide-dependent navigation aliases (only if z command exists from 00-tools.zsh)
-if type z &>/dev/null; then
-  alias ..="z .."
-  alias ...="z ../.."
-  alias ....="z ../../.."
-  alias -- -="z -"                  # Go to previous dir with -
-  alias cd.='z $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
-fi
+# Zoxide navigation aliases
+alias ..="z .."
+alias ...="z ../.."
+alias ....="z ../../.."
+alias -- -="z -"                  # Go to previous dir with -
+alias cd.='z $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
 
 # npm
 
