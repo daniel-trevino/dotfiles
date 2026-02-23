@@ -11,34 +11,12 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
 ### End of Zinit's installer chunk
 
-# Enable autocompletions
-autoload -Uz compinit
-
-# Only add completion paths that exist
+# Completion paths (compinit is handled by Oh My Zsh)
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 [ -d /usr/local/share/zsh/site-functions ] && fpath=(/usr/local/share/zsh/site-functions $fpath)
-
-# Guard against multiple compinit calls during reload
-if [[ -z "$_COMPINIT_DONE" ]]; then
-  typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
-  if [ $(date +'%j') != $updated_at ]; then
-    compinit -i
-  else
-    compinit -C -i
-  fi
-  zmodload -i zsh/complist
-  _COMPINIT_DONE=1
-fi
+zmodload -i zsh/complist
 
 # Zinit plugins
 zinit light zsh-users/zsh-autosuggestions
@@ -75,9 +53,15 @@ if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
 
-# thefuck - command correction
+# thefuck - command correction (cached to avoid running Python on every startup)
 if command -v thefuck >/dev/null 2>&1; then
-  eval $(thefuck --alias)
+  _thefuck_cache="${XDG_CACHE_HOME:-$HOME/.cache}/thefuck_alias.zsh"
+  if [[ ! -f "$_thefuck_cache" || "$(command -v thefuck)" -nt "$_thefuck_cache" ]]; then
+    mkdir -p "${_thefuck_cache:h}"
+    thefuck --alias > "$_thefuck_cache"
+  fi
+  source "$_thefuck_cache"
+  unset _thefuck_cache
 fi
 
 # Starship prompt
@@ -111,6 +95,3 @@ fi
 if command -v wt >/dev/null 2>&1; then
   eval "$(command wt config shell init zsh)"
 fi
-
-# Anthropic model preference
-export ANTHROPIC_MODEL="claude-opus-4-5-20251101"

@@ -51,21 +51,12 @@ export DOTFILES_DIR DOTFILES_EXTRA_DIR
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 eval "$(atuin init bash)"
 
-# Added by LM Studio CLI (lms)
+# LM Studio CLI
 export PATH="$PATH:$HOME/.lmstudio/bin"
-# End of LM Studio CLI section
-
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/elliot/.lmstudio/bin"
-# End of LM Studio CLI section
-
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/elliot/.lmstudio/bin"
-# End of LM Studio CLI section
 
 
 source ~/.safe-chain/scripts/init-posix.sh # Safe-chain bash initialization script
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init bash)"; fi
+
+eval "$(direnv hook bash)"
