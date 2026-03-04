@@ -36,11 +36,11 @@ all:
 endif
 
 ifeq ($(PROFILE),light)
-macos: sudo core-macos packages-light-macos link-macos cleanup-shell atuin install-vim select-shell-terminal
-linux: sudo core-linux brew packages-linux-light link-linux cleanup-shell atuin install-vim select-shell-linux
+macos: sudo core-macos packages-light-macos link-macos cleanup-shell atuin install-vim tmux-plugins select-shell-terminal
+linux: sudo core-linux brew packages-linux-light link-linux cleanup-shell atuin install-vim tmux-plugins select-shell-linux
 else
-macos: sudo core-macos packages link-macos cleanup-shell atuin install-vim select-shell-terminal
-linux: sudo core-linux brew packages-linux link-linux cleanup-shell atuin install-vim select-shell-linux
+macos: sudo core-macos packages link-macos cleanup-shell atuin install-vim tmux-plugins select-shell-terminal
+linux: sudo core-linux brew packages-linux link-linux cleanup-shell atuin install-vim tmux-plugins select-shell-linux
 endif
 
 light-macos:
@@ -209,6 +209,12 @@ zinit:
 		bash install-zinit.sh --unattended && \
 		rm install-zinit.sh; \
 	fi
+
+tmux-plugins:
+	if ! [ -d ~/.tmux/plugins/tpm ]; then \
+		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; \
+	fi
+	~/.tmux/plugins/tpm/bin/install_plugins
 
 select-shell-terminal:
   # Change default shell from /bin/bash to zsh
