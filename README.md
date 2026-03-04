@@ -26,6 +26,8 @@ My dotfiles for Mac and Ubuntu setup.
 
 ## Installation
 
+### macOS
+
 On a sparkling fresh installation of macOS:
 
 ```bash
@@ -56,6 +58,26 @@ and [config](./config) (using [stow](https://www.gnu.org/software/stow/)):
 cd ~/.dotfiles
 make
 ```
+
+### Linux (Ubuntu/Debian)
+
+On a fresh Ubuntu installation, `git` and `make` are needed first:
+
+```bash
+sudo apt-get update && sudo apt-get install -y git make
+```
+
+Then clone and install:
+
+```bash
+git clone https://github.com/daniel-trevino/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+make
+```
+
+This will install system packages via `apt`, set up [Homebrew for Linux](https://docs.brew.sh/Homebrew-on-Linux), install all Brewfile packages (macOS-only packages are skipped automatically), Node.js, Oh My Zsh, Zinit, Rust/Cargo, Atuin, Vim, and switch the default shell to Zsh.
+
+> **Note:** GUI cask apps are not installed on Linux. A few Brewfile formulae (`dockutil`, `terminal-notifier`, `wifi-password`) are macOS-only and will be skipped.
 
 The installation process in the Makefile is tested on every push and every week in this
 [GitHub Action](https://github.com/daniel-trevino/dotfiles/actions).
