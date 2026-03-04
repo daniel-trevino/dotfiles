@@ -35,14 +35,14 @@ jobs:
 
       - name: Install using Makefile
         run: |
-          if [ "$RUNNER_OS" == "macOS" ]; then
-            make
-          else
-            sudo make
-          fi
+          make
 
       - name: Verify runcom setup
         run: source $HOME/.bash_profile
+
+      - name: Verify zsh loads without errors
+        if: matrix.os == 'ubuntu-latest'
+        run: zsh -c 'source ~/.zprofile && source ~/.zshrc'
 
       - name: Run tests
         if: matrix.os == 'macos-latest'

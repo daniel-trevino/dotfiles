@@ -40,4 +40,4 @@ unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
 export DOTFILES_DIR DOTFILES_EXTRA_DIR
 
 ## ----------------- Custom config -----------------
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"

@@ -1,7 +1,7 @@
 SHELL = /bin/bash
 DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 OS := $(shell bin/is-supported bin/is-macos macos linux)
-PATH := /opt/homebrew/bin:$(DOTFILES_DIR)/bin:$(PATH)
+PATH := $(DOTFILES_DIR)/bin:$(PATH)
 ATUIN_DIR := $(HOME)/.atuin
 NVM_DIR := $(HOME)/.nvm
 VIM_DIR := ~/.vim_runtime
@@ -11,27 +11,31 @@ ZINIT_DIR := ~/.local/share/zinit/zinit.git
 export XDG_CONFIG_HOME := $(HOME)/.config
 
 # Brew command that works whether brew is in PATH or freshly installed
-BREW = $$(command -v brew 2>/dev/null || echo /opt/homebrew/bin/brew)
-STOW = $$(command -v stow 2>/dev/null || echo /opt/homebrew/bin/stow)
+BREW = $$(command -v brew 2>/dev/null || \
+	([ -x /opt/homebrew/bin/brew ] && echo /opt/homebrew/bin/brew) || \
+	([ -x /home/linuxbrew/.linuxbrew/bin/brew ] && echo /home/linuxbrew/.linuxbrew/bin/brew) || \
+	([ -x $(HOME)/.linuxbrew/bin/brew ] && echo $(HOME)/.linuxbrew/bin/brew) || \
+	echo /usr/local/bin/brew)
+STOW = $$(command -v stow 2>/dev/null || echo stow)
 
 all: $(OS)
 
 macos: sudo core-macos packages link-macos cleanup-shell atuin install-vim select-shell-terminal
 
-linux: core-linux link-linux atuin install-vim
+linux: sudo core-linux brew packages-linux link-linux cleanup-shell atuin install-vim select-shell-linux
 
 core-macos: brew bash git npm ruby
 
 core-linux:
-	apt-get update
-	apt-get upgrade -y
-	apt-get dist-upgrade -f
+	sudo apt-get update
+	sudo apt-get upgrade -y
+	sudo apt-get install -y build-essential curl file git zsh stow xclip
 
 stow-macos: brew
 	is-executable stow || $(BREW) install stow
 
 stow-linux: core-linux
-	is-executable stow || apt-get -y install stow
+	is-executable stow || sudo apt-get -y install stow
 
 sudo:
 ifndef GITHUB_ACTION
@@ -40,6 +44,8 @@ ifndef GITHUB_ACTION
 endif
 
 packages: brew-packages cask-apps node-packages oh-my-zsh zinit cargo-rust
+
+packages-linux: brew-packages node-packages oh-my-zsh zinit cargo-rust
 
 link-macos: stow-$(OS)
 	@echo "Backing up existing dotfiles..."
@@ -88,9 +94,15 @@ brew:
 		exit 1; \
 	fi
 	@if ! command -v brew >/dev/null 2>&1; then \
-		echo "Installing Homebrew for Apple Silicon..."; \
+		echo "Installing Homebrew..."; \
 		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
-		echo 'eval "$$(/opt/homebrew/bin/brew shellenv)"' >> $(HOME)/.zprofile; \
+		if [ -x /opt/homebrew/bin/brew ]; then \
+			eval "$$(/opt/homebrew/bin/brew shellenv)"; \
+		elif [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then \
+			eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"; \
+		elif [ -x $(HOME)/.linuxbrew/bin/brew ]; then \
+			eval "$$($(HOME)/.linuxbrew/bin/brew shellenv)"; \
+		fi; \
 	fi
 
 bash: BASH=/opt/homebrew/bin/bash
@@ -119,7 +131,7 @@ ruby: brew
 	$(BREW) install ruby
 
 brew-packages: brew
-	$(BREW) bundle --file=$(DOTFILES_DIR)/install/Brewfile
+	$(BREW) bundle --file=$(DOTFILES_DIR)/install/Brewfile || true
 
 cask-apps: brew
 	$(BREW) bundle --file=$(DOTFILES_DIR)/install/Caskfile --verbose || true
@@ -154,7 +166,7 @@ cargo-rust:
 zinit:
 	if ! [ -d $(ZINIT_DIR) ]; then \
 		curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh -o install-zinit.sh && \
-		sh install-zinit.sh --unattended && \
+		bash install-zinit.sh --unattended && \
 		rm install-zinit.sh; \
 	fi
 
@@ -162,11 +174,14 @@ select-shell-terminal:
   # Change default shell from /bin/bash to zsh
 	chsh -s /bin/zsh
 
+select-shell-linux:
+	@ZSH_PATH=$$(which zsh); \
+	if ! grep -qxF "$$ZSH_PATH" /etc/shells; then \
+		echo "$$ZSH_PATH" | sudo tee -a /etc/shells; \
+	fi; \
+	sudo chsh -s "$$ZSH_PATH" "$(USER)"
+
 # Cleanup shell completions and caches
-# This target fixes common shell startup warnings by:
-# - Removing broken completion symlinks from old Intel Mac paths
-# - Generating cargo completions if Rust is installed
-# - Clearing stale completion caches
 cleanup-shell:
 	@echo "Cleaning up shell completions and caches..."
 	@# Remove broken symlinks from old Intel Mac completion directory
@@ -175,8 +190,11 @@ cleanup-shell:
 	fi
 	@# Generate cargo completions if cargo is installed
 	@if command -v rustup >/dev/null 2>&1; then \
-		mkdir -p /opt/homebrew/share/zsh/site-functions; \
-		rustup completions zsh cargo > /opt/homebrew/share/zsh/site-functions/_cargo 2>/dev/null || true; \
+		BREW_PREFIX=$$(brew --prefix 2>/dev/null || echo ""); \
+		if [ -n "$$BREW_PREFIX" ]; then \
+			mkdir -p "$$BREW_PREFIX/share/zsh/site-functions"; \
+			rustup completions zsh cargo > "$$BREW_PREFIX/share/zsh/site-functions/_cargo" 2>/dev/null || true; \
+		fi; \
 	fi
 	@# Clear completion cache to force regeneration
 	@rm -f $(HOME)/.zcompdump* 2>/dev/null || true
@@ -185,7 +203,7 @@ cleanup-shell:
 # Reload shell configuration (useful after making changes)
 reload-shell:
 	@echo "Reloading shell configuration..."
-	@zsh -c "source ~/.zprofile && source ~/.zshrc" && echo "✅ Shell reloaded successfully"
+	@zsh -c "source ~/.zprofile && source ~/.zshrc" && echo "Shell reloaded successfully"
 
 # Quick install shortcuts for individual package files
 brewfile: brew-packages

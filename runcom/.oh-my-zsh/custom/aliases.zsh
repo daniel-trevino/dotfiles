@@ -138,7 +138,6 @@ alias ncd="npm-check -su"
 # Network
 
 alias ip="curl -s ipinfo.io | jq -r '.ip'"
-alias localip="ipconfig getifaddr en0"
 alias ipl="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 
 # Request using GET, POST, etc. method
@@ -156,83 +155,89 @@ alias week="date +%V"
 alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
 alias grip="grip -b"
 
-# ----------------------------- MACOS ---------------------------------
-# Copy pwd to clipboard
+# ----------------------------- OS-SPECIFIC ----------------------------
 
-alias cpwd="pwd|tr -d '\n'|pbcopy"
+if [[ "$OSTYPE" =~ ^darwin ]]; then
 
-# Shortcuts
+  # Clipboard
+  alias cpwd="pwd|tr -d '\n'|pbcopy"
+  alias cpf="pbcopy < " # Copy from file
+  alias pbtext="pbpaste | textutil -convert txt -stdin -stdout -encoding 30 | pbcopy"
+  alias pbspaces="pbpaste | expand | pbcopy"
 
-alias gg="$DOTFILES_GIT_GUI"
+  # Network
+  alias localip="ipconfig getifaddr en0"
 
-alias cask="brew cask"
+  # Shortcuts
+  alias gg="$DOTFILES_GIT_GUI"
+  alias cask="brew cask"
+  alias chrome="open -a ~/Applications/Google\ Chrome.app"
+  alias canary="open -a ~/Applications/Google\ Chrome\ Canary.app"
+  alias firefox="open -a ~/Applications/Firefox.app"
 
-alias chrome="open -a ~/Applications/Google\ Chrome.app"
-alias canary="open -a ~/Applications/Google\ Chrome\ Canary.app"
-alias firefox="open -a ~/Applications/Firefox.app"
+  # Exclude macOS specific files in ZIP archives
+  alias zip="zip -x *.DS_Store -x *__MACOSX* -x *.AppleDouble*"
 
-# Exclude macOS specific files in ZIP archives
+  # Open iOS Simulator
+  alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app"
 
-alias zip="zip -x *.DS_Store -x *__MACOSX* -x *.AppleDouble*"
+  # Flush DNS
+  alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
 
-# Open iOS Simulator
+  # Start screen saver
+  alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
 
-alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app"
+  # Log off
+  alias logoff="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
-# Flush DNS
+  # Quick-Look preview files from the command line
+  alias ql="qlmanage -p &>/dev/null"
 
-alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
+  # Show/hide desktop icons
+  alias desktopshow="defaults write com.apple.finder CreateDesktop -bool true && killfinder"
+  alias desktophide="defaults write com.apple.finder CreateDesktop -bool false && killfinder"
 
-# Start screen saver
+  # Recursively remove Apple meta files
+  alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
+  alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 
-alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
+  # Clean up LaunchServices to remove duplicates in the "Open With" menu
+  alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 
-# Log off
+  # Empty trash on mounted volumes and main HDD, and clear system logs
+  alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
 
-alias logoff="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+  # Reload native apps
+  alias killfinder="killall Finder"
+  alias killdock="killall Dock"
+  alias killmenubar="killall SystemUIServer NotificationCenter"
+  alias killos="killfinder && killdock && killmenubar"
 
-# Quick-Look preview files from the command line
+  # Kill all the tabs in Chrome to free up memory
+  alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
-alias ql="qlmanage -p &>/dev/null"
+  # Show system information
+  alias displays="system_profiler SPDisplaysDataType"
+  alias cpu="sysctl -n machdep.cpu.brand_string"
+  alias ram="top -l 1 -s 0 | grep PhysMem"
 
-# Show/hide desktop icons
+else
 
-alias desktopshow="defaults write com.apple.finder CreateDesktop -bool true && killfinder"
-alias desktophide="defaults write com.apple.finder CreateDesktop -bool false && killfinder"
+  # Clipboard (requires xclip)
+  alias cpwd="pwd|tr -d '\n'|xclip -selection clipboard"
+  alias cpf="xclip -selection clipboard < " # Copy from file
 
-# Recursively remove Apple meta files
+  # Network
+  alias localip="hostname -I | awk '{print \$1}'"
 
-alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
-alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
+  # Show system information
+  alias cpu="lscpu | head -15"
+  alias ram="free -h"
 
-# Clean up LaunchServices to remove duplicates in the "Open With" menu
+  # Flush DNS
+  alias flushdns="sudo systemd-resolve --flush-caches 2>/dev/null || sudo resolvectl flush-caches 2>/dev/null || true"
 
-alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
-
-# Empty trash on mounted volumes and main HDD, and clear system logs
-
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
-
-# Reload native apps
-
-alias killfinder="killall Finder"
-alias killdock="killall Dock"
-alias killmenubar="killall SystemUIServer NotificationCenter"
-alias killos="killfinder && killdock && killmenubar"
-
-# Kill all the tabs in Chrome to free up memory
-
-alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
-
-# Show system information
-
-alias displays="system_profiler SPDisplaysDataType"
-alias cpu="sysctl -n machdep.cpu.brand_string"
-alias ram="top -l 1 -s 0 | grep PhysMem"
-
-alias pbtext="pbpaste | textutil -convert txt -stdin -stdout -encoding 30 | pbcopy"
-alias pbspaces="pbpaste | expand | pbcopy"
-alias cpf="pbcopy < " # Copy from file
+fi
 
 # Helps to handle multiple ssh keys on github and cloning repos
 gclone() {

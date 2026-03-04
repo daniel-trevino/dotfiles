@@ -14,7 +14,7 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 # Completion paths (compinit is handled by Oh My Zsh)
-fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+[ -n "$HOMEBREW_PREFIX" ] && fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 [ -d /usr/local/share/zsh/site-functions ] && fpath=(/usr/local/share/zsh/site-functions $fpath)
 zmodload -i zsh/complist
 
@@ -96,9 +96,3 @@ if command -v wt >/dev/null 2>&1; then
   eval "$(command wt config shell init zsh)"
 fi
 
-# bun completions
-[ -s "/Users/danieltrevino/.bun/_bun" ] && source "/Users/danieltrevino/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
