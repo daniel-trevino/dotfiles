@@ -79,6 +79,32 @@ This will install system packages via `apt`, set up [Homebrew for Linux](https:/
 
 > **Note:** GUI cask apps are not installed on Linux. A few Brewfile formulae (`dockutil`, `terminal-notifier`, `wifi-password`) are macOS-only and will be skipped.
 
+### Installation Profiles
+
+Running `make` will prompt you to choose between two profiles:
+
+| | **Full** (default) | **Light** |
+|---|---|---|
+| Shell config (zsh, oh-my-zsh, zinit, starship) | Yes | Yes |
+| Core CLI tools (~23 packages) | Yes | Yes |
+| Dev runtimes (Node.js, Python, Go, Rust) | Yes | Yes |
+| Claude Code | Yes | Yes |
+| Cloud CLIs, databases, GUI apps, extras | Yes | No |
+
+To skip the prompt, use the shortcut targets:
+
+```bash
+make light-macos   # Light profile on macOS
+make light-linux   # Light profile on Linux
+```
+
+Or pass the `PROFILE` variable directly:
+
+```bash
+make macos PROFILE=light
+make linux PROFILE=full   # (default)
+```
+
 The installation process in the Makefile is tested on every push and every week in this
 [GitHub Action](https://github.com/daniel-trevino/dotfiles/actions).
 

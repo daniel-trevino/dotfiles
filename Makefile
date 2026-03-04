@@ -10,6 +10,8 @@ OH_MY_ZSH_DIR := ~/.oh-my-zsh
 ZINIT_DIR := ~/.local/share/zinit/zinit.git
 export XDG_CONFIG_HOME := $(HOME)/.config
 
+PROFILE ?= full
+
 # Brew command that works whether brew is in PATH or freshly installed
 BREW = $$(command -v brew 2>/dev/null || \
 	([ -x /opt/homebrew/bin/brew ] && echo /opt/homebrew/bin/brew) || \
@@ -18,11 +20,34 @@ BREW = $$(command -v brew 2>/dev/null || \
 	echo /usr/local/bin/brew)
 STOW = $$(command -v stow 2>/dev/null || echo stow)
 
+ifdef GITHUB_ACTION
 all: $(OS)
+else
+all:
+	@printf "\nSelect installation profile:\n"
+	@printf "  [1] Full  - all packages, GUI apps, cloud CLIs, databases\n"
+	@printf "  [2] Light - core CLI tools, dev runtimes, shell config, Claude Code\n"
+	@printf "\nChoice [1]: " && read choice; \
+	if [ "$$choice" = "2" ]; then \
+		$(MAKE) $(OS) PROFILE=light; \
+	else \
+		$(MAKE) $(OS) PROFILE=full; \
+	fi
+endif
 
+ifeq ($(PROFILE),light)
+macos: sudo core-macos packages-light-macos link-macos cleanup-shell atuin install-vim select-shell-terminal
+linux: sudo core-linux brew packages-linux-light link-linux cleanup-shell atuin install-vim select-shell-linux
+else
 macos: sudo core-macos packages link-macos cleanup-shell atuin install-vim select-shell-terminal
-
 linux: sudo core-linux brew packages-linux link-linux cleanup-shell atuin install-vim select-shell-linux
+endif
+
+light-macos:
+	$(MAKE) macos PROFILE=light
+
+light-linux:
+	$(MAKE) linux PROFILE=light
 
 core-macos: brew bash git npm ruby
 
@@ -46,6 +71,12 @@ endif
 packages: brew-packages cask-apps node-packages oh-my-zsh zinit cargo-rust
 
 packages-linux: brew-packages node-packages oh-my-zsh zinit cargo-rust
+
+packages-light: brew-packages-light claude-code oh-my-zsh zinit cargo-rust
+
+packages-light-macos: brew-packages-light cask-apps-light claude-code oh-my-zsh zinit cargo-rust
+
+packages-linux-light: brew-packages-light claude-code oh-my-zsh zinit cargo-rust
 
 link-macos: stow-$(OS)
 	@echo "Backing up existing dotfiles..."
@@ -133,14 +164,23 @@ ruby: brew
 brew-packages: brew
 	$(BREW) bundle --file=$(DOTFILES_DIR)/install/Brewfile || true
 
+brew-packages-light: brew
+	$(BREW) bundle --file=$(DOTFILES_DIR)/install/Brewfile.light || true
+
 cask-apps: brew
 	$(BREW) bundle --file=$(DOTFILES_DIR)/install/Caskfile --verbose || true
 	@if [ -d ~/Library/QuickLook ]; then \
 		xattr -d -r com.apple.quarantine ~/Library/QuickLook 2>/dev/null || true; \
 	fi
 
+cask-apps-light:
+	@echo "Skipping cask apps (light profile)"
+
 node-packages: npm
 	. $(NVM_DIR)/nvm.sh; npm install -g $(shell cat install/npmfile)
+
+claude-code: npm
+	. $(NVM_DIR)/nvm.sh; npm install -g @anthropic-ai/claude-code
 
 oh-my-zsh:
 	if ! [ -d $(OH_MY_ZSH_DIR) ]; then \

@@ -47,8 +47,25 @@ jobs:
       - name: Run tests
         if: matrix.os == 'macos-latest'
         run: make test
+
+  install-light:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone this repository
+        uses: actions/checkout@v4
+
+      - name: Install light profile
+        run: make light-linux
+
+      - name: Verify runcom setup
+        run: source $HOME/.bash_profile
+
+      - name: Verify zsh loads without errors
+        run: zsh -c 'source ~/.zprofile && source ~/.zshrc'
+
   release:
-    needs: [install]
+    needs: [install, install-light]
     runs-on: ubuntu-latest
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
