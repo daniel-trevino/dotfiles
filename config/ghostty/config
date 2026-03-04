@@ -1,0 +1,8 @@
+# Opacity (global)
+background-opacity = 1
+background-opacity-cells = true
+
+quick-terminal-size = 100%,100%
+
+theme = Cyberpunk
+keybind = shift+enter=text:\x1b\r
