@@ -30,6 +30,11 @@ if [ -d "$DOTFILES_EXTRA_DIR" ]; then
   done
 fi
 
+# Remap Caps Lock to Control (Linux only, requires X11)
+if [[ "$(uname)" == "Linux" ]] && command -v setxkbmap >/dev/null 2>&1; then
+  setxkbmap -option caps:ctrl_modifier
+fi
+
 # Clean up
 
 unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE

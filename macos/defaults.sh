@@ -99,6 +99,13 @@ defaults write com.apple.BezelServices kDimTime -int 300
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# Remap Caps Lock to Control (works across all apps, survives reboots via LaunchAgent)
+hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}' > /dev/null
+
+# Install LaunchAgent to persist Caps Lock → Control remap across reboots
+cp "$HOME/.dotfiles/macos/com.local.KeyRemapping.plist" "$HOME/Library/LaunchAgents/"
+launchctl load "$HOME/Library/LaunchAgents/com.local.KeyRemapping.plist" 2>/dev/null
+
 ###############################################################################
 # Trackpad, mouse, Bluetooth accessories                                      #
 ###############################################################################
