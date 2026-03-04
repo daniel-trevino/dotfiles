@@ -9,7 +9,7 @@ My dotfiles for Mac and Ubuntu setup.
 - Minimal efforts to install everything, using a [Makefile](./Makefile)
 - Mostly based around Homebrew, Caskroom and Node.js, latest Bash + GNU Utils
 - Fast and colored prompt
-- Updated macOS defaults
+- Updated macOS defaults (including Caps Lock → Control remap for tmux)
 - Well-organized and easy to customize
 - The installation and runcom setup is
   [tested weekly on real Ubuntu and macOS machines](https://github.com/daniel-trevino/dotfiles/actions) using
@@ -126,7 +126,7 @@ This is useful when you've added new packages to the install files and want to a
 2. Compile zinit via `zinit self-update`
 
 - `dotfiles dock` (set [Dock items](./macos/dock.sh))
-- `dotfiles macos` (set [macOS defaults](./macos/defaults.sh))
+- `dotfiles macos` (set [macOS defaults](./macos/defaults.sh), including Caps Lock → Control remap for tmux)
 - Mackup
   - Log in to Dropbox (and wait until synced)
   - `ln -s ~/.config/mackup/.mackup.cfg ~` (until [#632](https://github.com/lra/mackup/pull/632) is fixed)
