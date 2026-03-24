@@ -1,5 +1,6 @@
 tap "goles/battery"
 tap "hashicorp/tap"
+tap "raine/workmux"
 tap "withgraphite/tap"
 
 brew "asdf"
@@ -55,5 +56,6 @@ brew "tmux"
 brew "tree"
 brew "wifi-password"
 brew "wget"
+brew "raine/workmux/workmux"
 brew "yarn"
 brew "zoxide"

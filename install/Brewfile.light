@@ -1,3 +1,5 @@
+tap "raine/workmux"
+
 brew "asdf"
 brew "bat"
 brew "coreutils"
@@ -20,4 +22,5 @@ brew "thefuck"
 brew "tmux"
 brew "tree"
 brew "wget"
+brew "raine/workmux/workmux"
 brew "zoxide"

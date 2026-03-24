@@ -20,6 +20,7 @@ cask "linear-linear"
 cask "ledger-live"
 cask "maccy"
 cask "mycrypto"
+cask "nikitabobko/tap/aerospace"
 cask "notion"
 cask "numi"
 cask "postico"
@@ -28,7 +29,6 @@ cask "rectangle"
 cask "screen-studio"
 cask "slack"
 cask "spotify"
-cask "warp"
 
 # Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
 # Note: Many QuickLook plugins are deprecated/discontinued

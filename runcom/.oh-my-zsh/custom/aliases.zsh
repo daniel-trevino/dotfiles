@@ -33,6 +33,10 @@ alias tn="tmux new-session -s"
 alias tk="tmux kill-session -t"
 alias td="tmux detach"
 
+# workmux
+alias wm="workmux"
+alias wmr="workmux-restart"
+
 # docker
 
 alias lzd='lazydocker'

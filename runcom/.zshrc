@@ -91,8 +91,13 @@ fi
 # Safe-chain (only if installed)
 [ -f ~/.safe-chain/scripts/init-posix.sh ] && source ~/.safe-chain/scripts/init-posix.sh
 
-# Warp terminal
-if command -v wt >/dev/null 2>&1; then
-  eval "$(command wt config shell init zsh)"
-fi
 
+# Workmux: restart devenv in a worktree pane
+workmux-restart() {
+  local handle="${1:-$(git branch --show-current)}"
+  local base_port=$((8020 + $(echo "$handle" | cksum | cut -d' ' -f1) % 100 * 10))
+  echo "Starting devenv on base port $base_port"
+  direnv exec . devenv wt --base-port $base_port --no-color
+}
+
+export PATH="$HOME/.local/bin:$PATH"
