@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Mirror agent-config/skills/* into codex/.codex/skills/* as symlinks.
+# Codex owns ~/.codex/skills/.system/ in $HOME, so we can't fold the whole
+# skills/ directory under stow — each user skill is its own symlink instead.
+# Run after adding/removing a skill, before `make link-macos`.
+
+set -euo pipefail
+
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SRC="$DOTFILES/agent-config/skills"
+DST="$DOTFILES/codex/.codex/skills"
+
+if [[ ! -d "$SRC" ]]; then
+  echo "error: $SRC does not exist" >&2
+  exit 1
+fi
+
+mkdir -p "$DST"
+
+# Add or refresh a symlink for every skill in agent-config/skills/.
+for skill_path in "$SRC"/*/; do
+  [[ -d "$skill_path" ]] || continue
+  skill="$(basename "$skill_path")"
+  ln -snf "../../../agent-config/skills/$skill" "$DST/$skill"
+  echo "linked $skill"
+done
+
+# Drop stale symlinks for skills that no longer exist in agent-config/skills/.
+for link in "$DST"/*; do
+  [[ -L "$link" ]] || continue
+  name="$(basename "$link")"
+  if [[ ! -d "$SRC/$name" ]]; then
+    rm "$link"
+    echo "removed stale $name"
+  fi
+done

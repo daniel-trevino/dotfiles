@@ -89,8 +89,10 @@ link-macos: stow-$(OS)
 	mkdir -p $(XDG_CONFIG_HOME)
 	$(STOW) -v -t $(HOME) runcom
 	$(STOW) -v -t $(XDG_CONFIG_HOME) config
-	mkdir -p $(HOME)/.claude/skills
 	$(STOW) -v -t $(HOME) claude
+	bin/sync-codex-skills
+	mkdir -p $(HOME)/.codex/skills
+	$(STOW) -v --no-folding -t $(HOME) codex
 	@echo "Dotfiles symlinked successfully"
 
 
@@ -105,13 +107,16 @@ link-linux: stow-$(OS)
 	mkdir -p $(XDG_CONFIG_HOME)
 	$(STOW) -v -t $(HOME) runcom
 	$(STOW) -v -t $(XDG_CONFIG_HOME) config
-	mkdir -p $(HOME)/.claude/skills
 	$(STOW) -v -t $(HOME) claude
+	bin/sync-codex-skills
+	mkdir -p $(HOME)/.codex/skills
+	$(STOW) -v --no-folding -t $(HOME) codex
 
 unlink: stow-$(OS)
 	$(STOW) --delete -t $(HOME) runcom
 	$(STOW) --delete -t $(XDG_CONFIG_HOME) config
 	$(STOW) --delete -t $(HOME) claude
+	$(STOW) --delete --no-folding -t $(HOME) codex
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE.bak ]; then \
 		mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done
 
