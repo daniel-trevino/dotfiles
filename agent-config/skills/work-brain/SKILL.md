@@ -1,3 +1,8 @@
+---
+name: work-brain
+description: Use when reading, writing, or navigating the user's persistent knowledge base via the `work-brain` MCP server (tools like `mcp__work-brain__read_file`, `write_file`, `edit_file`, `list_files`, `grep`, `delete`, `mkdir`, `file_stat`). Covers directory structure, frontmatter conventions, naming rules, when to save knowledge, and how to update `log.md` and `_index.md`.
+---
+
 # Work Brain (Knowledge Base)
 
 You have access to a persistent knowledge base via the `work-brain` MCP server. It's a filesystem graph of markdown files — folders are categories, files are nodes, links between files are edges. Use the MCP tools (`read_file`, `write_file`, `edit_file`, `list_files`, `grep`, `delete`, `mkdir`, `file_stat`) to read and write to it.
