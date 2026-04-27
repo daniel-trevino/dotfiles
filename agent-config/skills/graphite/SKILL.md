@@ -1,3 +1,8 @@
+---
+name: graphite
+description: Use when planning or implementing changes as stacked PRs with the Graphite (`gt`) CLI — covers branch naming conventions, the stack planning process (one PR per todo, ordered by dependency), and how to keep each PR independently reviewable and CI-passing.
+---
+
 # Graphite Stacking Workflow
 
 ## Overview
