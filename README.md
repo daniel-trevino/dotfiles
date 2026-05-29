@@ -158,6 +158,13 @@ You can put your custom settings, such as Git credentials in the `system/.custom
 Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`. The runcom `.bash_profile` sources all
 `~/.extra/runcom/*.sh` files.
 
+### Agent CLI secrets
+
+The `codex` and `claude` aliases launch through `op run`, loading secret
+references from `agent-config/secrets/env.1password`. Keep only `op://`
+references there, then point MCP configs at those environment variable names.
+Requires 1Password's Developer setting for CLI integration.
+
 ## Additional Resources
 
 - [Homebrew](https://brew.sh)

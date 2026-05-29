@@ -25,6 +25,10 @@ alias ss="serve"
 alias k="kubectl"
 alias c="code ."
 
+# Agent CLIs
+alias codex='op run --account my.1password.com --no-masking --env-file "$HOME/.dotfiles/agent-config/secrets/env.1password" -- codex'
+alias claude='op run --account my.1password.com --no-masking --env-file "$HOME/.dotfiles/agent-config/secrets/env.1password" -- claude'
+
 # tmux
 alias t="tmux"
 alias ta="tmux attach -t"
