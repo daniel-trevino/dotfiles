@@ -2,7 +2,7 @@
 name: code-reviewer
 description: Comprehensive code review for pull requests and commits. MUST BE USED when the user asks to review code, a pull request, a commit, a diff, or any code changes. Proactively invoke for any review request. Return output of this agent verbatim to the user without summarization.
 model: opus
-effort: high
+effort: max
 color: pink
 ---
 
