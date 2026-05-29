@@ -1,0 +1,76 @@
+model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
+personality = "pragmatic"
+[projects."/Users/danieltrevino/.dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/danieltrevino/Projects/lovable"]
+trust_level = "trusted"
+
+[projects."/Users/danieltrevino/Projects/dainiel"]
+trust_level = "trusted"
+
+[projects."/Users/danieltrevino/conductor/repos/ai"]
+trust_level = "trusted"
+
+[projects."/Users/danieltrevino/conductor/repos/hermes-agent"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
+
+[mcp_servers.work-brain]
+url = "https://dainiel-work-brain.cerebro.top/mcp"
+bearer_token_env_var = "WORK_BRAIN_BEARER_TOKEN"
+default_tools_approval_mode = "approve"
+
+[mcp_servers.notion]
+url = "https://mcp.notion.com/mcp"
+
+[mcp_servers.linear]
+url = "https://mcp.linear.app/mcp"
+
+[mcp_servers.linear.tools.save_milestone]
+approval_mode = "approve"
+
+[mcp_servers.linear.tools.save_issue]
+approval_mode = "approve"
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[marketplaces.openai-bundled]
+last_updated = "2026-05-21T11:21:04Z"
+source_type = "local"
+source = "/Users/danieltrevino/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-05-21T07:21:01Z"
+source_type = "local"
+source = "/Users/danieltrevino/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[features]
+hooks = true
+
+[hooks.state]
+
+[hooks.state."/Users/danieltrevino/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:5986c7e013f70b9f369ca6e559bee8cb423a5ce91cb2ab0131da53262b18cf88"
+
+[hooks.state."/Users/danieltrevino/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:7ed0c588635367dfa9e7af5d6ea98136e0b7d0a917f9118382371c156083a992"
+
+[hooks.state."/Users/danieltrevino/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:29a9cb962d4f0e1def58ecb64a3b7d277a5451ca57e9f3bd7c51baf7febe68f6"
