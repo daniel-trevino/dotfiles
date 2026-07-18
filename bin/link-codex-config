@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SOURCE="$DOTFILES/codex/.codex/config.toml"
+MODE="${1:-link}"
+
+if [[ "$MODE" != "link" && "$MODE" != "--unlink" ]]; then
+  echo "usage: $0 [--unlink]" >&2
+  exit 2
+fi
+
+if [[ ! -f "$SOURCE" ]]; then
+  echo "error: canonical Codex config not found: $SOURCE" >&2
+  exit 1
+fi
+
+manage_target() {
+  local target="$1"
+  local link_source="${2:-$SOURCE}"
+
+  [[ "$target" == "$SOURCE" ]] && return
+
+  if [[ "$MODE" == "--unlink" ]]; then
+    if [[ -L "$target" && "$target" -ef "$SOURCE" ]]; then
+      rm "$target"
+      echo "unlinked $target"
+    fi
+    return
+  fi
+
+  mkdir -p "$(dirname "$target")"
+
+  if [[ -L "$target" && "$(readlink "$target")" == "$link_source" ]]; then
+    echo "linked $target"
+    return
+  fi
+
+  if [[ -e "$target" || -L "$target" ]]; then
+    rm -f "$target"
+  fi
+
+  ln -s "$link_source" "$target"
+  echo "linked $target -> $SOURCE"
+}
+
+HOME_LINK_SOURCE="$SOURCE"
+if [[ "$SOURCE" == "$HOME/"* ]]; then
+  HOME_LINK_SOURCE="../${SOURCE#"$HOME/"}"
+fi
+manage_target "$HOME/.codex/config.toml" "$HOME_LINK_SOURCE"

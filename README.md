@@ -160,6 +160,13 @@ Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`.
 
 ### Agent CLI secrets
 
+`codex/.codex/config.toml` is the only Codex configuration source. `make
+link-macos` and `make link-linux` symlink `~/.codex/config.toml` to that tracked
+file, so changes made by Codex update the dotfiles source directly. Orca keeps
+an app-managed runtime mirror under its own `$CODEX_HOME`; that generated file
+is deliberately not symlinked because Orca rewrites it atomically when syncing
+settings and managed hooks.
+
 The `codex` and `claude` aliases launch through `op run`, loading secret
 references from `agent-config/secrets/env.1password`. Keep only `op://`
 references there, then point MCP configs at those environment variable names.

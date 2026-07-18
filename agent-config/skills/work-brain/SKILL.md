@@ -23,7 +23,7 @@ You have access to a persistent knowledge base via the `work-brain` MCP server. 
 | `topics/` | Research topics and domain knowledge |
 | `decisions/` | Important cross-project decisions |
 | `integrations/` | Connected services and usage patterns |
-| `activity/` | Daily activity logs |
+| `activity/` | Daily work logs, one file per day at `activity/<year>/<month>/<day>.md` (zero-padded, e.g. `2026/06/12.md`): work done, Slack conversations, decisions, project progress, links to other brain docs. Format doc in `activity/_index.md` |
 | `raw/` | Unprocessed content awaiting compilation |
 | `plans/` | Implementation plans organized by project |
 
@@ -74,6 +74,7 @@ Operations: `ingest`, `update`, `create`, `query`, `lint`, `correction`.
 ## Naming conventions
 
 - Files: `kebab-case.md`
+- Activity: `activity/<year>/<month>/<day>.md`, zero-padded (`2026/06/12.md`); update the month's `_index.md` when adding a day
 - Meetings: `YYYY-MM-DD-title.md`
 - Decisions: `YYYY-MM-DD-topic.md`
 - People: `firstname-lastname.md`
