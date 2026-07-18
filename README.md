@@ -167,10 +167,47 @@ an app-managed runtime mirror under its own `$CODEX_HOME`; that generated file
 is deliberately not symlinked because Orca rewrites it atomically when syncing
 settings and managed hooks.
 
-The `codex` and `claude` aliases launch through `op run`, loading secret
-references from `agent-config/secrets/env.1password`. Keep only `op://`
-references there, then point MCP configs at those environment variable names.
-Requires 1Password's Developer setting for CLI integration.
+The `codex` and `claude` aliases load secrets from the local, Git-ignored
+`agent-config/secrets/env.cache`. Create or update it explicitly:
+
+```bash
+agent-secrets refresh
+```
+
+When testing from a worktree before it has become the active dotfiles checkout,
+invoke the utility by path instead:
+
+```bash
+./bin/agent-secrets refresh
+```
+
+It reads the template from that worktree but stores the ignored cache under the
+active `$DOTFILES_DIR`, so the cache remains available after the worktree is
+merged or removed.
+
+The refresh command resolves the references in
+`agent-config/secrets/env.1password` with the 1Password CLI. It is the only
+operation that contacts 1Password, so normal agent launches do not require an
+approval. Run it again whenever a secret rotates.
+
+The cache is plaintext local state. Its directory is restricted to mode `0700`
+and the cache to `0600`; full-disk encryption and the local user account provide
+the remaining at-rest protection. The cache must contain single-line dotenv
+values. It is written atomically, and a failed refresh leaves the previous cache
+intact.
+
+Useful commands:
+
+```bash
+agent-secrets status  # Show cache metadata without values
+agent-secrets clear   # Remove the cached secrets
+```
+
+To add a secret, put a `NAME={{ op://vault/item/field }}` reference in the
+tracked template and configure the relevant MCP server to read `NAME` from its
+environment. A missing, invalid, unresolved, or overly permissive cache prevents
+Codex and Claude from starting and directs you to refresh it. Requires
+1Password's Developer setting for CLI integration.
 
 ## Additional Resources
 
