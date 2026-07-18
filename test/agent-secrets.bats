@@ -46,6 +46,37 @@ EOF
   chmod 755 "$TEST_ROOT/bin/op"
 }
 
+install_gnu_stat_stub() {
+  local real_stat
+  real_stat="$(command -v stat)"
+
+  cat > "$TEST_ROOT/bin/stat" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "$1" == "-f" ]]; then
+  printf '  File: "%s"\nBlock size: 4096\n' "$3"
+  exit 1
+fi
+
+if [[ "$1" == "-c" ]]; then
+  if "$REAL_STAT" -c "$2" "$3" 2>/dev/null; then
+    exit 0
+  fi
+
+  case "$2" in
+    '%a') exec "$REAL_STAT" -f '%Lp' "$3" ;;
+    '%u') exec "$REAL_STAT" -f '%u' "$3" ;;
+    '%Y') exec "$REAL_STAT" -f '%m' "$3" ;;
+  esac
+fi
+
+exec "$REAL_STAT" "$@"
+EOF
+  chmod 755 "$TEST_ROOT/bin/stat"
+  export REAL_STAT="$real_stat"
+}
+
 make_valid_cache() {
   printf '%s\n' \
     '# local cache' \
@@ -62,8 +93,8 @@ make_valid_cache() {
   run env PATH="$TEST_ROOT/bin:$PATH" "$AGENT_SECRETS" refresh
 
   [ "$status" -eq 0 ]
-  [ "$(stat -f '%Lp' "$AGENT_SECRETS_DIR" 2>/dev/null || stat -c '%a' "$AGENT_SECRETS_DIR")" = "700" ]
-  [ "$(stat -f '%Lp' "$AGENT_SECRETS_CACHE" 2>/dev/null || stat -c '%a' "$AGENT_SECRETS_CACHE")" = "600" ]
+  [ "$(stat -c '%a' "$AGENT_SECRETS_DIR" 2>/dev/null || stat -f '%Lp' "$AGENT_SECRETS_DIR")" = "700" ]
+  [ "$(stat -c '%a' "$AGENT_SECRETS_CACHE" 2>/dev/null || stat -f '%Lp' "$AGENT_SECRETS_CACHE")" = "600" ]
   grep -q '^WORK_BRAIN_BEARER_TOKEN=resolved token=with spaces$' "$AGENT_SECRETS_CACHE"
   run find "$AGENT_SECRETS_DIR" -name 'env.cache.tmp.*' -print
   [ "$status" -eq 0 ]
@@ -111,6 +142,18 @@ make_valid_cache() {
 
   [ "$status" -eq 7 ]
   [ "$output" = 'value with spaces|value=with=equals|argument with spaces' ]
+}
+
+@test "GNU stat on macOS does not pollute cache metadata" {
+  make_valid_cache
+  install_gnu_stat_stub
+
+  run env PATH="$TEST_ROOT/bin:$PATH" REAL_STAT="$REAL_STAT" "$AGENT_SECRETS" status
+
+  [ "$status" -eq 0 ]
+  [[ "$output" == *'Mode: 600'* ]]
+  [[ "$output" == *'Status: valid'* ]]
+  [[ "$output" != *'Block size:'* ]]
 }
 
 @test "exec treats shell syntax in values as data" {
