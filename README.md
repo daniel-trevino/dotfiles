@@ -167,12 +167,41 @@ an app-managed runtime mirror under its own `$CODEX_HOME`; that generated file
 is deliberately not symlinked because Orca rewrites it atomically when syncing
 settings and managed hooks.
 
+There are two separate brain MCP servers:
+
+- `work-brain` is the personal brain at `brain-dtb.lovable.app`. It uses the
+  `WORK_BRAIN_BEARER_TOKEN` loaded from the local agent secret cache.
+- `company-brain` is Lovable's Company Brain at `brain.lovable.app`. It uses
+  OAuth. Codex connects over native HTTP; Claude uses `mcp-remote` as an OAuth
+  discovery bridge.
+
+Codex and Claude keep separate Company Brain OAuth sessions. Authenticate
+Codex once after linking the dotfiles:
+
+```bash
+codex mcp login company-brain
+```
+
+Claude opens a browser consent page the first time `company-brain` connects. To
+authenticate or test it directly, run:
+
+```bash
+npx -y -p mcp-remote@0.1.38 mcp-remote-client \
+  https://brain.lovable.app/api/public/mcp --transport http-only
+```
+
 The `codex` and `claude` aliases load secrets from the local, Git-ignored
 `agent-config/secrets/env.cache`. Create or update it explicitly:
 
 ```bash
 agent-secrets refresh
 ```
+
+The cache is optional. When it is absent, the aliases still start Codex and
+Claude, but disable their configured MCP servers for that session. This is the
+default path for light installations and servers without the 1Password CLI.
+If a cache exists but is invalid, unresolved, or has unsafe permissions, the
+launch still fails closed instead of silently ignoring it.
 
 When testing from a worktree before it has become the active dotfiles checkout,
 invoke the utility by path instead:
@@ -205,8 +234,8 @@ agent-secrets clear   # Remove the cached secrets
 
 To add a secret, put a `NAME={{ op://vault/item/field }}` reference in the
 tracked template and configure the relevant MCP server to read `NAME` from its
-environment. A missing, invalid, unresolved, or overly permissive cache prevents
-Codex and Claude from starting and directs you to refresh it. Requires
+environment. An invalid, unresolved, or overly permissive cache prevents Codex
+and Claude from starting and directs you to refresh it. Refreshing requires
 1Password's Developer setting for CLI integration.
 
 ## Additional Resources

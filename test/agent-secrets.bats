@@ -8,6 +8,7 @@ setup() {
   export AGENT_SECRETS_CACHE="$AGENT_SECRETS_DIR/env.cache"
   export AGENT_SECRETS_OP_ACCOUNT="test.1password.local"
   AGENT_SECRETS="$BATS_TEST_DIRNAME/../bin/agent-secrets"
+  unset CODEX_HOME
 
   mkdir -p "$AGENT_SECRETS_DIR" "$TEST_ROOT/bin"
 }
@@ -104,6 +105,12 @@ make_valid_cache() {
 @test "a worktree command stores its cache under the active dotfiles directory" {
   install_op_stub
   local active_dotfiles="$TEST_ROOT/active-dotfiles"
+  local source_cache="$BATS_TEST_DIRNAME/../agent-config/secrets/env.cache"
+  local source_cache_existed=0
+  if [[ -f "$source_cache" ]]; then
+    source_cache_existed=1
+    cp "$source_cache" "$TEST_ROOT/source-cache-before"
+  fi
   unset AGENT_SECRETS_DIR AGENT_SECRETS_TEMPLATE AGENT_SECRETS_CACHE
   mkdir -p "$active_dotfiles/agent-config/secrets"
 
@@ -114,7 +121,11 @@ make_valid_cache() {
 
   [ "$status" -eq 0 ]
   [ -f "$active_dotfiles/agent-config/secrets/env.cache" ]
-  [ ! -f "$BATS_TEST_DIRNAME/../agent-config/secrets/env.cache" ]
+  if [[ "$source_cache_existed" -eq 1 ]]; then
+    cmp "$source_cache" "$TEST_ROOT/source-cache-before"
+  else
+    [ ! -e "$source_cache" ]
+  fi
 }
 
 @test "a failed refresh preserves the previous cache" {
@@ -174,6 +185,71 @@ make_valid_cache() {
 
   [ "$status" -ne 0 ]
   [[ "$output" == *"agent-secrets refresh"* ]]
+}
+
+@test "missing cache launches Codex with configured MCP servers disabled" {
+  mkdir -p "$TEST_ROOT/home/.codex"
+  cat > "$TEST_ROOT/home/.codex/config.toml" <<'EOF'
+[mcp_servers.work-brain]
+command = "personal-brain"
+
+[mcp_servers.company-brain]
+url = "https://example.com/mcp"
+
+[mcp_servers.company-brain.tools.search]
+approval_mode = "approve"
+EOF
+  cat > "$TEST_ROOT/bin/codex" <<'EOF'
+#!/usr/bin/env bash
+printf '<%s>\n' "$@"
+EOF
+  chmod 755 "$TEST_ROOT/bin/codex"
+
+  run env HOME="$TEST_ROOT/home" PATH="$TEST_ROOT/bin:$PATH" \
+    "$AGENT_SECRETS" exec codex --model test-model
+
+  [ "$status" -eq 0 ]
+  [[ "$output" == *'cache missing; starting Codex with configured MCP servers disabled'* ]]
+  [[ "$output" == *'<mcp_servers.work-brain.enabled=false>'* ]]
+  [[ "$output" == *'<mcp_servers.company-brain.enabled=false>'* ]]
+  [[ "$output" == *'<--model>'* ]]
+  [[ "$output" == *'<test-model>'* ]]
+}
+
+@test "missing cache launches Claude with a strict empty MCP config" {
+  cat > "$TEST_ROOT/bin/claude" <<'EOF'
+#!/usr/bin/env bash
+printf '<%s>\n' "$@"
+EOF
+  chmod 755 "$TEST_ROOT/bin/claude"
+
+  run env PATH="$TEST_ROOT/bin:$PATH" \
+    "$AGENT_SECRETS" exec claude --model test-model
+
+  [ "$status" -eq 0 ]
+  [[ "$output" == *'cache missing; starting Claude with MCP servers disabled'* ]]
+  [[ "$output" == *'<--mcp-config={"mcpServers":{}}>'* ]]
+  [[ "$output" == *'<--strict-mcp-config>'* ]]
+  [[ "$output" == *'<--model>'* ]]
+  [[ "$output" == *'<test-model>'* ]]
+}
+
+@test "agent fallback does not ignore an invalid cache" {
+  local marker="$TEST_ROOT/codex-ran"
+  printf '%s\n' 'FIRST_SECRET={{ op://Test/item/value }}' > "$AGENT_SECRETS_CACHE"
+  chmod 700 "$AGENT_SECRETS_DIR"
+  chmod 600 "$AGENT_SECRETS_CACHE"
+  cat > "$TEST_ROOT/bin/codex" <<EOF
+#!/usr/bin/env bash
+touch "$marker"
+EOF
+  chmod 755 "$TEST_ROOT/bin/codex"
+
+  run env PATH="$TEST_ROOT/bin:$PATH" "$AGENT_SECRETS" exec codex
+
+  [ "$status" -ne 0 ]
+  [[ "$output" == *'unresolved 1Password reference'* ]]
+  [ ! -e "$marker" ]
 }
 
 @test "exec rejects unresolved references and permissive files" {
