@@ -26,8 +26,15 @@ alias k="kubectl"
 alias c="code ."
 
 # Agent CLIs
-alias codex='agent-secrets exec codex'
-alias claude='agent-secrets exec claude'
+codex() {
+  _lazy_load_nvm
+  agent-secrets exec codex "$@"
+}
+
+claude() {
+  _lazy_load_nvm
+  agent-secrets exec claude "$@"
+}
 
 # tmux
 alias t="tmux"
