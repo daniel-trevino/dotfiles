@@ -26,7 +26,7 @@ else
 all:
 	@printf "\nSelect installation profile:\n"
 	@printf "  [1] Full  - all packages, GUI apps, cloud CLIs, databases\n"
-	@printf "  [2] Light - core CLI tools, dev runtimes, shell config, Claude Code\n"
+	@printf "  [2] Light - core CLI tools, dev runtimes, shell config, Claude and Codex\n"
 	@printf "\nChoice [1]: " && read choice; \
 	if [ "$$choice" = "2" ]; then \
 		$(MAKE) $(OS) PROFILE=light; \
@@ -70,13 +70,13 @@ endif
 
 packages: brew-packages cask-apps node-packages oh-my-zsh zinit cargo-rust
 
-packages-linux: brew-packages node-packages oh-my-zsh zinit cargo-rust
+packages-linux: brew-packages node-packages agent-clis oh-my-zsh zinit cargo-rust
 
-packages-light: brew-packages-light claude-code oh-my-zsh zinit cargo-rust
+packages-light: brew-packages-light agent-clis oh-my-zsh zinit cargo-rust
 
-packages-light-macos: brew-packages-light cask-apps-light claude-code oh-my-zsh zinit cargo-rust
+packages-light-macos: brew-packages-light cask-apps-light agent-clis oh-my-zsh zinit cargo-rust
 
-packages-linux-light: brew-packages-light claude-code oh-my-zsh zinit cargo-rust
+packages-linux-light: brew-packages-light agent-clis oh-my-zsh zinit cargo-rust
 
 link-macos: stow-$(OS)
 	@echo "Backing up existing dotfiles..."
@@ -194,6 +194,11 @@ node-packages: npm
 
 claude-code: npm
 	. $(NVM_DIR)/nvm.sh; npm install -g @anthropic-ai/claude-code
+
+codex-cli: npm
+	. $(NVM_DIR)/nvm.sh; npm install -g @openai/codex
+
+agent-clis: claude-code codex-cli
 
 oh-my-zsh:
 	if ! [ -d $(OH_MY_ZSH_DIR) ]; then \

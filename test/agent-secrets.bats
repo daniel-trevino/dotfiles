@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+bats_require_minimum_version 1.5.0
+
 setup() {
   export TEST_ROOT
   TEST_ROOT="$(mktemp -d)"
@@ -250,6 +252,29 @@ EOF
   [ "$status" -ne 0 ]
   [[ "$output" == *'unresolved 1Password reference'* ]]
   [ ! -e "$marker" ]
+}
+
+@test "agent launcher skips PATH entries that are directories" {
+  mkdir -p "$TEST_ROOT/path-first/claude"
+  cat > "$TEST_ROOT/bin/claude" <<'EOF'
+#!/usr/bin/env bash
+printf 'resolved executable\n'
+EOF
+  chmod 755 "$TEST_ROOT/bin/claude"
+
+  run env PATH="$TEST_ROOT/path-first:$TEST_ROOT/bin:$PATH" \
+    "$AGENT_SECRETS" exec claude
+
+  [ "$status" -eq 0 ]
+  [[ "$output" == *'resolved executable'* ]]
+  [[ "$output" != *'Is a directory'* ]]
+}
+
+@test "agent launcher reports a missing executable clearly" {
+  run -127 env PATH="$TEST_ROOT/bin:/bin:/usr/bin" "$AGENT_SECRETS" exec codex
+
+  [ "$status" -eq 127 ]
+  [[ "$output" == *'executable not found: codex'* ]]
 }
 
 @test "exec rejects unresolved references and permissive files" {

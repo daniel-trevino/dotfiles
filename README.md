@@ -88,7 +88,7 @@ Running `make` will prompt you to choose between two profiles:
 | Shell config (zsh, oh-my-zsh, zinit, starship) | Yes | Yes |
 | Core CLI tools (~23 packages) | Yes | Yes |
 | Dev runtimes (Node.js, Python, Go, Rust) | Yes | Yes |
-| Claude Code | Yes | Yes |
+| Claude Code and Codex CLI | Yes | Yes |
 | Cloud CLIs, databases, GUI apps, extras | Yes | No |
 
 To skip the prompt, use the shortcut targets:
