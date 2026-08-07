@@ -169,25 +169,29 @@ settings and managed hooks.
 
 There are two separate brain MCP servers:
 
-- `work-brain` is the personal brain at `brain-dtb.lovable.app`. It uses the
-  `WORK_BRAIN_BEARER_TOKEN` loaded from the local agent secret cache.
-- `company-brain` is Lovable's Company Brain at `brain.lovable.app`. It uses
-  OAuth. Codex connects over native HTTP; Claude uses `mcp-remote` as an OAuth
-  discovery bridge.
+- `work-brain` is the personal brain at `brain-dtb.lovable.app/mcp`.
+- `company-brain` is Lovable's Company Brain at
+  `brain.lovable.app/api/public/mcp`.
 
-Codex and Claude keep separate Company Brain OAuth sessions. Authenticate
-Codex once after linking the dotfiles:
+Both use OAuth; no bearer token is loaded from the local agent secret cache.
+Codex uses `mcp-remote` for `work-brain` OAuth discovery and native HTTP for
+`company-brain`. Claude keeps native, user-scoped HTTP configurations. Each
+client keeps its own OAuth sessions.
+
+Authenticate once after linking the dotfiles or adding the servers to Claude:
 
 ```bash
 codex mcp login company-brain
+claude mcp login work-brain
+claude mcp login company-brain
 ```
 
-Claude opens a browser consent page the first time `company-brain` connects. To
-authenticate or test it directly, run:
+`work-brain` opens its browser consent page automatically the first time Codex
+connects. To authenticate or test it directly, run:
 
 ```bash
 npx -y -p mcp-remote@0.1.38 mcp-remote-client \
-  https://brain.lovable.app/api/public/mcp --transport http-only
+  https://brain-dtb.lovable.app/mcp --transport http-only
 ```
 
 The `codex` and `claude` aliases load secrets from the local, Git-ignored

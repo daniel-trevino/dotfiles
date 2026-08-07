@@ -43,7 +43,7 @@ fi
 
 printf '%s\n' \
   '# resolved cache' \
-  'WORK_BRAIN_BEARER_TOKEN=resolved token=with spaces' \
+  'FIRST_SECRET=resolved token=with spaces' \
   'CODEX_CA_CERTIFICATE=/etc/ssl/cert.pem' > "$output"
 EOF
   chmod 755 "$TEST_ROOT/bin/op"
@@ -98,7 +98,7 @@ make_valid_cache() {
   [ "$status" -eq 0 ]
   [ "$(stat -c '%a' "$AGENT_SECRETS_DIR" 2>/dev/null || stat -f '%Lp' "$AGENT_SECRETS_DIR")" = "700" ]
   [ "$(stat -c '%a' "$AGENT_SECRETS_CACHE" 2>/dev/null || stat -f '%Lp' "$AGENT_SECRETS_CACHE")" = "600" ]
-  grep -q '^WORK_BRAIN_BEARER_TOKEN=resolved token=with spaces$' "$AGENT_SECRETS_CACHE"
+  grep -q '^FIRST_SECRET=resolved token=with spaces$' "$AGENT_SECRETS_CACHE"
   run find "$AGENT_SECRETS_DIR" -name 'env.cache.tmp.*' -print
   [ "$status" -eq 0 ]
   [ -z "$output" ]

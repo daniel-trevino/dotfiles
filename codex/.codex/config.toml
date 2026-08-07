@@ -30,8 +30,7 @@ trust_level = "trusted"
 
 [mcp_servers.work-brain]
 command = "npx"
-args = ["-y", "mcp-remote@0.1.38", "https://brain-dtb.lovable.app/api/public/mcp", "--header", "Authorization: Bearer ${WORK_BRAIN_BEARER_TOKEN}", "--transport", "http-only", "--silent"]
-env_vars = ["WORK_BRAIN_BEARER_TOKEN"]
+args = ["-y", "mcp-remote@0.1.38", "https://brain-dtb.lovable.app/mcp", "--transport", "http-only", "--silent"]
 startup_timeout_sec = 30
 default_tools_approval_mode = "approve"
 
