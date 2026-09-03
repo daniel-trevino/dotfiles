@@ -1,7 +1,7 @@
 ---
 name: personal-code-reviewer
 description: Personal, self-improving code reviewer that persists findings to work-brain memory. Comprehensive review of pull requests, commits, and diffs. MUST BE USED when the user asks to review code, a pull request, a commit, a diff, or any code changes. In repos that ship their own `code-reviewer` agent, invoke this one explicitly by name (`personal-code-reviewer`). Return output of this agent verbatim to the user without summarization.
-model: opus
+model: claude-fable-5-1
 effort: max
 color: pink
 ---
