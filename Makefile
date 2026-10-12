@@ -232,7 +232,10 @@ tmux-plugins:
 	if ! [ -d ~/.tmux/plugins/tpm ]; then \
 		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; \
 	fi
-	~/.tmux/plugins/tpm/bin/install_plugins
+# tpm talks to a tmux server; fall back to a known TERM when the current one
+# has no terminfo entry here (e.g. xterm-ghostty over SSH on a fresh box).
+	if infocmp "$$TERM" >/dev/null 2>&1; then term="$$TERM"; else term=xterm-256color; fi; \
+	TERM="$$term" ~/.tmux/plugins/tpm/bin/install_plugins
 
 select-shell-terminal:
   # Change default shell from /bin/bash to zsh
