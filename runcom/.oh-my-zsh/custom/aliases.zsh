@@ -27,12 +27,12 @@ alias c="code ."
 
 # Agent CLIs
 codex() {
-  _lazy_load_nvm
+  typeset -f nvm_ls >/dev/null || lazy_load_nvm
   agent-secrets exec codex "$@"
 }
 
 claude() {
-  _lazy_load_nvm
+  typeset -f nvm_ls >/dev/null || lazy_load_nvm
   agent-secrets exec claude "$@"
 }
 

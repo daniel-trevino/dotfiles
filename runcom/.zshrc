@@ -48,11 +48,6 @@ source $ZSH/oh-my-zsh.sh
 # bat theme
 export BAT_THEME=Dracula
 
-# Zoxide (better cd) - creates 'z' function used by aliases
-if command -v zoxide >/dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
-fi
-
 # thefuck - command correction (cached to avoid running Python on every startup)
 if command -v thefuck >/dev/null 2>&1; then
   _thefuck_cache="${XDG_CACHE_HOME:-$HOME/.cache}/thefuck_alias.zsh"
@@ -102,3 +97,9 @@ workmux-restart() {
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+# Zoxide (better cd) - creates 'z' function used by aliases
+# Must stay at the very end of this file (zoxide's own requirement)
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
