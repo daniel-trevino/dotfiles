@@ -26,7 +26,7 @@ else
 all:
 	@printf "\nSelect installation profile:\n"
 	@printf "  [1] Full  - all packages, GUI apps, cloud CLIs, databases\n"
-	@printf "  [2] Light - core CLI tools, dev runtimes, shell config, Claude and Codex\n"
+	@printf "  [2] Light - core CLI tools, dev runtimes, shell config, Claude, Codex and Pi\n"
 	@printf "\nChoice [1]: " && read choice; \
 	if [ "$$choice" = "2" ]; then \
 		$(MAKE) $(OS) PROFILE=light; \
