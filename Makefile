@@ -68,7 +68,7 @@ ifndef GITHUB_ACTION
 	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 endif
 
-packages: brew-packages cask-apps node-packages oh-my-zsh zinit cargo-rust
+packages: brew-packages cask-apps node-packages pi-cli oh-my-zsh zinit cargo-rust
 
 packages-linux: brew-packages node-packages agent-clis oh-my-zsh zinit cargo-rust
 
@@ -198,7 +198,10 @@ claude-code: npm
 codex-cli: npm
 	. $(NVM_DIR)/nvm.sh; npm install -g @openai/codex
 
-agent-clis: claude-code codex-cli
+pi-cli: npm
+	. $(NVM_DIR)/nvm.sh; npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+
+agent-clis: claude-code codex-cli pi-cli
 
 oh-my-zsh:
 	if ! [ -d $(OH_MY_ZSH_DIR) ]; then \
