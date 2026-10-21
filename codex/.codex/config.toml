@@ -28,6 +28,10 @@ trust_level = "trusted"
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 
+[mcp_servers.mycontext]
+url = "https://mycontext.work/mcp"
+startup_timeout_sec = 30
+
 [mcp_servers.company-brain]
 url = "https://brain.lovable.app/api/public/mcp"
 startup_timeout_sec = 30

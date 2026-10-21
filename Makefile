@@ -94,6 +94,7 @@ link-macos: stow-$(OS)
 	mkdir -p $(HOME)/.codex/skills
 	bin/link-codex-config
 	$(STOW) -v --no-folding -t $(HOME) codex
+	$(STOW) -v --no-folding -t $(HOME) pi
 	@echo "Dotfiles symlinked successfully"
 
 
@@ -113,12 +114,14 @@ link-linux: stow-$(OS)
 	mkdir -p $(HOME)/.codex/skills
 	bin/link-codex-config
 	$(STOW) -v --no-folding -t $(HOME) codex
+	$(STOW) -v --no-folding -t $(HOME) pi
 
 unlink: stow-$(OS)
 	$(STOW) --delete -t $(HOME) runcom
 	$(STOW) --delete -t $(XDG_CONFIG_HOME) config
 	$(STOW) --delete -t $(HOME) claude
 	$(STOW) --delete --no-folding -t $(HOME) codex
+	$(STOW) --delete --no-folding -t $(HOME) pi
 	bin/link-codex-config --unlink
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE.bak ]; then \
 		mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done

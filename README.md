@@ -167,6 +167,17 @@ an app-managed runtime mirror under its own `$CODEX_HOME`; that generated file
 is deliberately not symlinked because Orca rewrites it atomically when syncing
 settings and managed hooks.
 
+`mycontext` is the personal MyContext vault at `mycontext.work/mcp`: shared
+memory for every agent harness (session summaries, execution plans, review
+memory). Codex reads it from the tracked config; Claude and Pi keep their own
+user-scoped entries, added once per machine:
+
+```bash
+claude mcp add --transport http --scope user mycontext https://mycontext.work/mcp
+pi mcp add mycontext --url https://mycontext.work/mcp
+codex mcp login mycontext   # then sign in from /mcp in Claude and Pi
+```
+
 `company-brain` is Lovable's Company Brain MCP server at
 `brain.lovable.app/api/public/mcp`. It uses OAuth; no bearer token is loaded from
 the local agent secret cache. Codex uses native HTTP; Claude keeps a native,
