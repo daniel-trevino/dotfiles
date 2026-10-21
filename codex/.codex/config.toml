@@ -28,12 +28,6 @@ trust_level = "trusted"
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 
-[mcp_servers.work-brain]
-command = "npx"
-args = ["-y", "mcp-remote@0.1.38", "https://brain-dtb.lovable.app/mcp", "--transport", "http-only", "--silent"]
-startup_timeout_sec = 30
-default_tools_approval_mode = "approve"
-
 [mcp_servers.company-brain]
 url = "https://brain.lovable.app/api/public/mcp"
 startup_timeout_sec = 30

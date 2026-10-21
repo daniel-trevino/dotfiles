@@ -167,31 +167,16 @@ an app-managed runtime mirror under its own `$CODEX_HOME`; that generated file
 is deliberately not symlinked because Orca rewrites it atomically when syncing
 settings and managed hooks.
 
-There are two separate brain MCP servers:
+`company-brain` is Lovable's Company Brain MCP server at
+`brain.lovable.app/api/public/mcp`. It uses OAuth; no bearer token is loaded from
+the local agent secret cache. Codex uses native HTTP; Claude keeps a native,
+user-scoped HTTP configuration. Each client keeps its own OAuth session.
 
-- `work-brain` is the personal brain at `brain-dtb.lovable.app/mcp`.
-- `company-brain` is Lovable's Company Brain at
-  `brain.lovable.app/api/public/mcp`.
-
-Both use OAuth; no bearer token is loaded from the local agent secret cache.
-Codex uses `mcp-remote` for `work-brain` OAuth discovery and native HTTP for
-`company-brain`. Claude keeps native, user-scoped HTTP configurations. Each
-client keeps its own OAuth sessions.
-
-Authenticate once after linking the dotfiles or adding the servers to Claude:
+Authenticate once after linking the dotfiles or adding the server to Claude:
 
 ```bash
 codex mcp login company-brain
-claude mcp login work-brain
 claude mcp login company-brain
-```
-
-`work-brain` opens its browser consent page automatically the first time Codex
-connects. To authenticate or test it directly, run:
-
-```bash
-npx -y -p mcp-remote@0.1.38 mcp-remote-client \
-  https://brain-dtb.lovable.app/mcp --transport http-only
 ```
 
 The `codex` and `claude` aliases load secrets from the local, Git-ignored

@@ -192,8 +192,8 @@ make_valid_cache() {
 @test "missing cache launches Codex with configured MCP servers disabled" {
   mkdir -p "$TEST_ROOT/home/.codex"
   cat > "$TEST_ROOT/home/.codex/config.toml" <<'EOF'
-[mcp_servers.work-brain]
-command = "personal-brain"
+[mcp_servers.local-tool]
+command = "local-tool"
 
 [mcp_servers.company-brain]
 url = "https://example.com/mcp"
@@ -212,7 +212,7 @@ EOF
 
   [ "$status" -eq 0 ]
   [[ "$output" == *'cache missing; starting Codex with configured MCP servers disabled'* ]]
-  [[ "$output" == *'<mcp_servers.work-brain.enabled=false>'* ]]
+  [[ "$output" == *'<mcp_servers.local-tool.enabled=false>'* ]]
   [[ "$output" == *'<mcp_servers.company-brain.enabled=false>'* ]]
   [[ "$output" == *'<--model>'* ]]
   [[ "$output" == *'<test-model>'* ]]
