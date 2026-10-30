@@ -15,6 +15,7 @@ This is a personal dotfiles repository for macOS and Ubuntu setup. It automates 
 ├── bin/               # Custom utility scripts (added to PATH)
 ├── config/            # Application configs (symlinked to ~/.config/)
 │   ├── git/           # Git configuration and ignore patterns
+│   ├── omniwm/        # OmniWM tiling window manager settings
 │   ├── prettier/      # Prettier configuration
 │   └── thefuck/       # thefuck settings
 ├── install/           # Package lists
